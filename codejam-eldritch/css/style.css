@@ -76,6 +76,30 @@ body:before {
     gap: 15px;
 }
 
+@keyframes append-animate {
+    from {
+        transform: scale(0);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes slide-up {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 .ancient-card {
     background-position: 50%;
     background-repeat: no-repeat;
@@ -167,6 +191,7 @@ body:before {
 
 .current-state.active {
     visibility: visible;
+    animation: append-animate .2s linear;
 }
 
 .current-state .title {
@@ -240,6 +265,7 @@ body:before {
     width: 130px;
     border-radius: 15px;
     margin: -60px;
+    animation: slide-up .2s linear;
 }
 
 .footer {
