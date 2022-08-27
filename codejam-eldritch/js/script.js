@@ -54,7 +54,7 @@ const createMiniDeck = (stage, difficulty) => {
         newCards = JSON.parse(JSON.stringify(cards));
 
     for (let color in newCards) {
-        let shuffleCards = shuffle(newCards[color]),
+        let shuffleCards = shuffle(newCards[color]);
 
         if (difficulty === 'easy') {
             shuffleCards = shuffleCards.filter(card => card.difficulty !== 'hard');
