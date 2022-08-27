@@ -5,29 +5,45 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Codejam-eldritch</title>
+    <title>Codejam</title>
+    <link rel="shortcut icon" type="image/x-icon" href="./assets/favicon.ico">
     <link rel="stylesheet" href="./css/style.css">
-    <link rel="icon" type="image/x-icon" href="./assets/favicon.ico">
+
 </head>
 
 <body>
-    <div class="wrapper">
-        <div class="inner">
+    <header class="header">
+        <div class="logo">
+            <img src="./assets/Logo.webp" alt="Eldritch Horror">
+        </div>
+    </header>
+
+    <main class="main">
+        <div class="settings">
             <ul class="ancients-list"></ul>
-            <div class="settings">
+            <div class="general">
                 <div class="difficulty-container">
                     <span class="difficulty-title">Choose the level of difficulty</span>
                     <button class="button difficulty active">Normal</button>
                 </div>
-                <button class="button shuffle">Shuffle deck</button>
+                <button class="button shuffle">Shuffle</button>
             </div>
         </div>
         <div class="deck-container">
             <div class="deck"></div>
             <div class="cards-container"></div>
         </div>
+    </main>
 
-        <script type="module" src="./script.js"></script>
+    <footer class="footer">
+        <div class="copyright">
+            <span class="copyright-text">© 2022</span>
+            <a class="copyright-link github" target="_blank" href="https://github.com/4k1r1n"></a>
+            <a class="copyright-link rs-school" target="_blank" href="https://rs.school/js/"></a>
+        </div>
+    </footer>
+
+    <script type="module" src="./script.js"></script>
 </body>
 
 </html>

@@ -14,44 +14,44 @@ li {
 
 body {
     position: relative;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
     background-position: 50%;
     background-repeat: no-repeat;
     background-size: cover;
-    height: 100vh;
-    width: 100vw;
+    transition: background-image .8s ease-in-out;
 }
 
 body:before {
     content: '';
     display: block;
     position: absolute;
-    height: 100%;
-    width: 100%;
-    background-color: rgba(0, 0, 0, .45);
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, .6);
     z-index: -1;
 }
 
-.wrapper {
-    display: flex;
-    width: 100%;
-    height: 100%;
-    align-items: center;
-    gap: 20%;
-    padding: 30px;
-    flex-direction: column;
-}
-
-.button {
-    color: #000;
-    cursor: pointer;
+.header {
     text-align: center;
-    border-radius: 5px;
-    font-size: 16px;
-    padding: 7px 9px;
-    transition: all .3s ease-in-out;
 }
 
-.inner {
+.logo img {
+    max-width: 250px;
+    margin: 10px 0;
+}
+
+.main {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 60px;
+    flex: 1 0 auto;
+}
+
+.settings {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -60,7 +60,28 @@ body:before {
     width: 100%;
 }
 
-.settings {
+.ancients-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.ancient-card {
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: contain;
+    cursor: pointer;
+    height: 260px;
+    width: 200px;
+    border-radius: 15px;
+    transition: all .3s ease-in-out;
+}
+
+.ancient-card.active {
+    box-shadow: 0 0 15px 7px #5d170b;
+}
+
+.general {
     padding: 25px;
     display: flex;
     flex-direction: column;
@@ -94,34 +115,23 @@ body:before {
     text-decoration: underline;
 }
 
+.button {
+    color: #000;
+    cursor: pointer;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 16px;
+    padding: 7px 9px;
+    transition: all .3s ease-in-out;
+}
+
 .shuffle {
     background-color: rgb(179, 166, 124, .8);
 }
 
 .shuffle:hover {
     background-color: rgba(141, 131, 98, .6);
-    box-shadow: 0 0 8px 1px rgba(141, 131, 98);
-}
-
-.ancients-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-}
-
-.ancient-card {
-    background-position: 50%;
-    background-repeat: no-repeat;
-    background-size: contain;
-    cursor: pointer;
-    height: 260px;
-    width: 200px;
-    border-radius: 15px;
-    transition: all .3s ease-in-out;
-}
-
-.ancient-card.active {
-    box-shadow: 0 0 15px 1px #5d170b;
+    box-shadow: 0 0 4px 2px rgba(141, 131, 98);
 }
 
 .deck-container {
@@ -154,4 +164,47 @@ body:before {
     width: 130px;
     border-radius: 15px;
     margin: -60px;
+}
+
+.footer {
+    display: flex;
+    flex-shrink: 0;
+    justify-content: center;
+}
+
+.copyright {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    gap: 10px;
+}
+
+.copyright-text {
+    font-size: 14px;
+    opacity: .3;
+    color: #e2d4c6;
+}
+
+.github {
+    width: 32px;
+    background-image: url("../assets/copyright/github.svg");
+    background-size: 32px;
+}
+
+.rs-school {
+    width: 50px;
+    background-image: url("../assets/copyright/rs-school.svg");
+    background-size: 50px;
+}
+
+.copyright-link {
+    display: block;
+    height: 32px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    opacity: .3;
+}
+
+.copyright-link:hover {
+    opacity: 1;
 }
