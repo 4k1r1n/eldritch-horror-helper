@@ -1,20 +1,11 @@
-import ancientsData from './data/ancients.js';
-import cards from './data/mythicCards/index.js'
-
-const ancientList = document.querySelector('.ancients-list'),
-    cardsContainer = document.querySelector('.cards-container'),
-    deckContainer = document.querySelector('.deck'),
-    rectangles = document.querySelectorAll('.rectangle'),
-    stateContainer = document.querySelector('.current-state'),
-    greenStateCards = document.querySelectorAll('.rectangle.green'),
-    yellowStateCards = document.querySelectorAll('.rectangle.yellow'),
-    blueStateCards = document.querySelectorAll('.rectangle.blue');
+import ancientsData from '../data/ancients.js';
+import cards from '../data/mythicCards/index.js'
+import { ancientList, cardsContainer, deckContainer, rectangles, stateContainer, greenStateCards, yellowStateCards, blueStateCards } from './constants.js'
 
 let deck,
     miniDecks,
     currentAncient,
     currentAncientId;
-
 
 let stage = 0;
 
@@ -24,13 +15,15 @@ const setBg = (ancient) => {
     if (ancient) {
         img.src = `./assets/bg/${ancient}.webp`;
     } else {
-        img.src = `./assets/bg/home.webp`;
+        img.src = './assets/bg/home.webp';
     }
 
     img.onload = () => {
         document.body.style.backgroundImage = `url(${img.src})`;
     };
 }
+
+setBg();
 
 const addAncients = () => {
     ancientsData.forEach((ancient, index) => {
@@ -44,29 +37,6 @@ const addAncients = () => {
 }
 
 addAncients();
-
-ancientList.addEventListener('click', e => {
-    ancientList.childNodes.forEach(ancient => {
-        ancient.classList.remove('active');
-    })
-    e.target.classList.add('active');
-    currentAncientId = e.target.dataset.id;
-
-    stage = 0;
-
-    if (e.target.dataset.id) {
-        currentAncient = ancientsData[e.target.dataset.id].id;
-    }
-
-    setBg(currentAncient);
-    setDefaultState(currentAncientId);
-
-    cardsContainer.innerHTML = '';
-    deckContainer.classList.remove('active');
-    stateContainer.classList.remove('active');
-})
-
-setBg();
 
 const shuffle = array => {
     return array.sort(() => Math.random() - 0.5);
@@ -96,21 +66,6 @@ const collectDeck = (id) => {
     return [thirdStage, secondStage, firstStage];
 }
 
-document.querySelector('.shuffle').addEventListener('click', () => {
-    if (currentAncientId) {
-        deckContainer.style.backgroundImage = 'url(./assets/mythicCardBackground.png)';
-        deckContainer.classList.add('active');
-        stateContainer.classList.add('active');
-
-        miniDecks = collectDeck(currentAncientId);
-        deck = miniDecks.flat();
-
-        console.log(deck);
-    }
-
-    cardsContainer.innerHTML = '';
-})
-
 const displayDeck = deck => {
     if (deck.length) {
         let div = document.createElement('div');
@@ -127,10 +82,6 @@ const displayDeck = deck => {
         deckContainer.classList.remove('active');
     }
 }
-
-deckContainer.addEventListener('click', () => {
-    displayDeck(deck);
-})
 
 const setDefaultState = (currentAncientId) => {
     if (currentAncientId) {
@@ -169,3 +120,44 @@ const changeState = (currentCard) => {
         yellowStateCards[stage].textContent--;
     }
 }
+
+ancientList.addEventListener('click', e => {
+    ancientList.childNodes.forEach(ancient => {
+        ancient.classList.remove('active');
+    })
+    e.target.classList.add('active');
+    currentAncientId = e.target.dataset.id;
+
+    stage = 0;
+
+    if (e.target.dataset.id) {
+        currentAncient = ancientsData[e.target.dataset.id].id;
+    }
+
+    setBg(currentAncient);
+    setDefaultState(currentAncientId);
+
+    cardsContainer.innerHTML = '';
+    deckContainer.classList.remove('active');
+    stateContainer.classList.remove('active');
+})
+
+document.querySelector('.shuffle').addEventListener('click', () => {
+    if (currentAncientId) {
+        deckContainer.style.backgroundImage = 'url(./assets/mythicCardBackground.png)';
+        deckContainer.classList.add('active');
+        stateContainer.classList.add('active');
+
+        miniDecks = collectDeck(currentAncientId);
+        deck = miniDecks.flat();
+
+        console.log(deck);
+    }
+
+    cardsContainer.innerHTML = '';
+})
+
+
+deckContainer.addEventListener('click', () => {
+    displayDeck(deck);
+})
