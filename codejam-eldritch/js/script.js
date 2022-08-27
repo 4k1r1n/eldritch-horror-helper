@@ -55,21 +55,20 @@ const createMiniDeck = (stage, difficulty) => {
 
     for (let color in newCards) {
         let shuffleCards = shuffle(newCards[color]),
-            filteredCards;
 
         if (difficulty === 'easy') {
-            filteredCards = shuffleCards.filter(card => card.difficulty !== 'hard');
+            shuffleCards = shuffleCards.filter(card => card.difficulty !== 'hard');
         } else if (difficulty === 'hard') {
-            filteredCards = shuffleCards.filter(card => card.difficulty !== 'easy');
+            shuffleCards = shuffleCards.filter(card => card.difficulty !== 'easy');
         } else if (difficulty === 'normal') {
-            filteredCards = shuffleCards;
+            shuffleCards = shuffleCards;
         }
 
-        filteredCards.slice(0, stage[color]).map(card => {
+        shuffleCards.slice(0, stage[color]).map(card => {
             miniDeck.push(card);
         })
 
-        filteredCards.splice(0, stage[color]);
+        shuffleCards.splice(0, stage[color]);
     }
 
     return shuffle(miniDeck);
