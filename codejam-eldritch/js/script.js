@@ -78,12 +78,19 @@ const collectDeck = (id, difficulty) => {
 
 const displayDeck = deck => {
     if (deck.length) {
+        const img = new Image();
+
         let div = document.createElement('div');
         div.classList.add('card');
         cardsContainer.appendChild(div);
 
         let currentCard = deck.pop();
-        div.style.backgroundImage = `url(${currentCard.cardFace})`;
+
+        img.src = currentCard.cardFace;
+        img.onload = () => {
+            div.style.backgroundImage = `url(${img.src})`;
+        };
+
         console.log(currentCard);
 
         changeState(currentCard)
@@ -155,7 +162,6 @@ ancientList.addEventListener('click', e => {
 })
 
 document.querySelector('.shuffle').addEventListener('click', () => {
-
     if (currentAncientId && currentDifficulty) {
         deckContainer.style.backgroundImage = 'url(./assets/mythicCardBackground.png)';
         deckContainer.classList.add('active');
