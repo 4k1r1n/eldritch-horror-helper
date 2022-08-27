@@ -1,11 +1,13 @@
 import ancientsData from '../data/ancients.js';
-import cards from '../data/mythicCards/index.js'
-import { ancientList, cardsContainer, deckContainer, rectangles, stateContainer, greenStateCards, yellowStateCards, blueStateCards } from './constants.js'
+import cards from '../data/mythicCards/index.js';
+import difficulties from '../data/difficulties.js';
+import { ancientList, cardsContainer, deckContainer, rectangles, stateContainer, greenStateCards, yellowStateCards, blueStateCards, difficultiesContainer } from './constants.js'
 
 let deck,
     miniDecks,
     currentAncient,
-    currentAncientId;
+    currentAncientId,
+    currentDifficulty;
 
 let stage = 0;
 
@@ -42,14 +44,23 @@ const shuffle = array => {
     return array.sort(() => Math.random() - 0.5);
 }
 
-const createMiniDeck = (stage) => {
+const createMiniDeck = (stage, difficulty) => {
     let miniDeck = [],
         newCards = JSON.parse(JSON.stringify(cards));
 
     for (let color in newCards) {
-        let shuffleCards = shuffle(newCards[color]);
+        let shuffleCards = shuffle(newCards[color]),
+            filteredCards;
 
-        shuffleCards.slice(0, stage[color]).map(card => {
+        if (difficulty === 'easy') {
+            filteredCards = shuffleCards.filter(card => card.difficulty !== 'hard')
+        } else if (difficulty === 'hard') {
+            filteredCards = shuffleCards.filter(card => card.difficulty !== 'easy')
+        } else if (difficulty === 'normal') {
+            filteredCards = shuffleCards;
+        }
+
+        filteredCards.slice(0, stage[color]).map(card => {
             miniDeck.push(card);
         })
 
@@ -58,11 +69,10 @@ const createMiniDeck = (stage) => {
 
     return shuffle(miniDeck);
 }
-
-const collectDeck = (id) => {
-    const firstStage = createMiniDeck(ancientsData[id].firstStage),
-        secondStage = createMiniDeck(ancientsData[id].secondStage),
-        thirdStage = createMiniDeck(ancientsData[id].thirdStage);
+const collectDeck = (id, difficulty) => {
+    const firstStage = createMiniDeck(ancientsData[id].firstStage, difficulty),
+        secondStage = createMiniDeck(ancientsData[id].secondStage, difficulty),
+        thirdStage = createMiniDeck(ancientsData[id].thirdStage, difficulty);
     return [thirdStage, secondStage, firstStage];
 }
 
@@ -77,7 +87,9 @@ const displayDeck = deck => {
         console.log(currentCard);
 
         changeState(currentCard)
-    } else {
+    }
+
+    if (deck.length === 0) {
         deckContainer.style.backgroundImage = '';
         deckContainer.classList.remove('active');
     }
@@ -109,7 +121,6 @@ const setDefaultState = (currentAncientId) => {
 const changeState = (currentCard) => {
     if (greenStateCards[stage].textContent === '0' && blueStateCards[stage].textContent === '0' && yellowStateCards[stage].textContent === '0') {
         stage++;
-        console.log(stage)
     }
 
     if (currentCard.color === 'green') {
@@ -125,6 +136,7 @@ ancientList.addEventListener('click', e => {
     ancientList.childNodes.forEach(ancient => {
         ancient.classList.remove('active');
     })
+
     e.target.classList.add('active');
     currentAncientId = e.target.dataset.id;
 
@@ -143,21 +155,33 @@ ancientList.addEventListener('click', e => {
 })
 
 document.querySelector('.shuffle').addEventListener('click', () => {
-    if (currentAncientId) {
+
+    if (currentAncientId && currentDifficulty) {
         deckContainer.style.backgroundImage = 'url(./assets/mythicCardBackground.png)';
         deckContainer.classList.add('active');
         stateContainer.classList.add('active');
 
-        miniDecks = collectDeck(currentAncientId);
+        miniDecks = collectDeck(currentAncientId, currentDifficulty);
         deck = miniDecks.flat();
-
         console.log(deck);
     }
 
     cardsContainer.innerHTML = '';
 })
 
-
 deckContainer.addEventListener('click', () => {
     displayDeck(deck);
+})
+
+difficultiesContainer.addEventListener('click', e => {
+    [...difficultiesContainer.children].forEach(button => {
+        button.classList.remove('active');
+    })
+
+    difficulties.forEach(difficulty => {
+        if (e.target.textContent === difficulty.name) {
+            currentDifficulty = difficulty.id;
+            e.target.classList.add('active');
+        }
+    })
 })

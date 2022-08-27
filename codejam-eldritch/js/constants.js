@@ -5,6 +5,7 @@ const ancientList = document.querySelector('.ancients-list'),
     stateContainer = document.querySelector('.current-state'),
     greenStateCards = document.querySelectorAll('.rectangle.green'),
     yellowStateCards = document.querySelectorAll('.rectangle.yellow'),
-    blueStateCards = document.querySelectorAll('.rectangle.blue');
+    blueStateCards = document.querySelectorAll('.rectangle.blue'),
+    difficultiesContainer = document.querySelector('.difficulty-container');
 
-export { ancientList, cardsContainer, deckContainer, rectangles, stateContainer, greenStateCards, yellowStateCards, blueStateCards }
+export { ancientList, cardsContainer, deckContainer, rectangles, stateContainer, greenStateCards, yellowStateCards, blueStateCards, difficultiesContainer }
