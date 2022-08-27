@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 
 <head>
     <meta charset="UTF-8">
@@ -8,13 +8,13 @@
     <title>Codejam</title>
     <link rel="shortcut icon" type="image/x-icon" href="./assets/favicon.ico">
     <link rel="stylesheet" href="./css/style.css">
-
 </head>
 
 <body>
     <header class="header">
         <div class="logo">
             <img src="./assets/Logo.webp" alt="Eldritch Horror">
+            <h1 class="title">Helper</h1>
         </div>
     </header>
 
@@ -23,13 +23,40 @@
             <ul class="ancients-list"></ul>
             <div class="general">
                 <div class="difficulty-container">
-                    <span class="difficulty-title">Choose the level of difficulty</span>
-                    <button class="button difficulty active">Normal</button>
+                    <span class="difficulty-title">Уровень сложности</span>
+                    <button class="button difficulty active">Средний</button>
                 </div>
-                <button class="button shuffle">Shuffle</button>
+                <button class="button shuffle">Замешать</button>
             </div>
         </div>
         <div class="deck-container">
+            <div class="current-state">
+                <span class="title">Трекер состояния колоды</span>
+                <div class="stage-container">
+                    <div class="stage-text">Первый этап:</div>
+                    <div class="rectangles-container">
+                        <div class="rectangle green"></div>
+                        <div class="rectangle yellow"></div>
+                        <div class="rectangle blue"></div>
+                    </div>
+                </div>
+                <div class="stage-container">
+                    <div class="stage-text">Второй этап:</div>
+                    <div class="rectangles-container">
+                        <div class="rectangle green"></div>
+                        <div class="rectangle yellow"></div>
+                        <div class="rectangle blue"></div>
+                    </div>
+                </div>
+                <div class="stage-container">
+                    <div class="stage-text">Третий этап:</div>
+                    <div class="rectangles-container">
+                        <div class="rectangle green"></div>
+                        <div class="rectangle yellow"></div>
+                        <div class="rectangle blue"></div>
+                    </div>
+                </div>
+            </div>
             <div class="deck"></div>
             <div class="cards-container"></div>
         </div>

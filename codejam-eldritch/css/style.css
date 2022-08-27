@@ -38,6 +38,16 @@ body:before {
     text-align: center;
 }
 
+
+.logo .title {
+    color: #252d6d;
+    z-index: 1;
+    position: relative;
+    bottom: 45px;
+    right: 60px;
+    text-shadow: 0 0 8px #ece4ce;
+}
+
 .logo img {
     max-width: 250px;
     margin: 10px 0;
@@ -81,7 +91,8 @@ body:before {
     box-shadow: 0 0 15px 7px #5d170b;
 }
 
-.general {
+.general,
+.current-state {
     padding: 25px;
     display: flex;
     flex-direction: column;
@@ -98,34 +109,34 @@ body:before {
     gap: 4px;
 }
 
-.difficulty {
-    background-color: inherit;
-    width: fit-content;
-    padding: 5px;
-}
-
-.difficulty.active {
-    text-decoration: underline;
-    color: #691d10;
-    font-weight: 800;
-    font-size: 18px;
-}
-
-.difficulty:hover {
-    text-decoration: underline;
-}
-
 .button {
     color: #000;
     cursor: pointer;
     text-align: center;
-    border-radius: 5px;
-    font-size: 16px;
-    padding: 7px 9px;
+    font-size: 14px;
     transition: all .3s ease-in-out;
 }
 
+.difficulty {
+    background-color: inherit;
+    width: fit-content;
+    margin: 5px;
+}
+
+.difficulty.active {
+    color: #691d10;
+    font-weight: 800;
+    font-size: 14px;
+    border-bottom: 1px solid #691d10;
+}
+
+.difficulty:hover {
+    border-bottom: 1px solid #691d10;
+}
+
 .shuffle {
+    padding: 7px 9px;
+    border-radius: 5px;
     background-color: rgb(179, 166, 124, .8);
 }
 
@@ -137,8 +148,63 @@ body:before {
 .deck-container {
     display: flex;
     align-items: center;
-    width: 50%;
-    justify-content: space-between;
+    width: 80%;
+    gap: 20%;
+}
+
+.current-state {
+    visibility: hidden;
+}
+
+.current-state.active {
+    visibility: visible;
+}
+
+.current-state.title {
+    text-align: center;
+}
+
+.stage-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.stage-text {
+    width: 80px;
+    white-space: nowrap;
+    font-size: 14px;
+}
+
+.rectangles-container {
+    align-items: center;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    font-weight: 700;
+}
+
+.rectangle {
+    align-items: center;
+    display: flex;
+    border: 2px solid #fff;
+    color: #fff;
+    height: 25px;
+    justify-content: center;
+    width: 34px;
+}
+
+.rectangle.green {
+    background-color: #3a611f;
+}
+
+.rectangle.yellow {
+    background-color: #aa8000;
+}
+
+.rectangle.blue {
+    background-color: #4d59a3;
 }
 
 .deck {
@@ -176,7 +242,7 @@ body:before {
     display: flex;
     align-items: center;
     margin-bottom: 10px;
-    gap: 10px;
+    gap: 15px;
 }
 
 .copyright-text {
