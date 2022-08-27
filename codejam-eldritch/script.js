@@ -47,6 +47,9 @@ ancientList.addEventListener('click', e => {
     }
 
     setBg(currentAncient);
+
+    cardsContainer.innerHTML = '';
+    deckContainer.classList.remove('active');
 })
 
 setBg();

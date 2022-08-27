@@ -1,0 +1,25 @@
+const cards = {
+  yellow1: './assets/MythicCards/yellow/yellow1.png',
+  yellow2: './assets/MythicCards/yellow/yellow2.png',
+  yellow3: './assets/MythicCards/yellow/yellow3.png',
+  yellow4: './assets/MythicCards/yellow/yellow4.png',
+  yellow5: './assets/MythicCards/yellow/yellow5.png',
+  yellow6: './assets/MythicCards/yellow/yellow6.png',
+  yellow7: './assets/MythicCards/yellow/yellow7.png',
+  yellow8: './assets/MythicCards/yellow/yellow8.png',
+  yellow9: './assets/MythicCards/yellow/yellow9.png',
+  yellow10: './assets/MythicCards/yellow/yellow10.png',
+  yellow11: './assets/MythicCards/yellow/yellow11.png',
+  yellow12: './assets/MythicCards/yellow/yellow12.png',
+  yellow13: './assets/MythicCards/yellow/yellow13.png',
+  yellow14: './assets/MythicCards/yellow/yellow14.png',
+  yellow15: './assets/MythicCards/yellow/yellow15.png',
+  yellow16: './assets/MythicCards/yellow/yellow16.png',
+  yellow17: './assets/MythicCards/yellow/yellow17.png',
+  yellow18: './assets/MythicCards/yellow/yellow18.png',
+  yellow19: './assets/MythicCards/yellow/yellow19.png',
+  yellow20: './assets/MythicCards/yellow/yellow20.png',
+  yellow21: './assets/MythicCards/yellow/yellow21.png',
+}
+
+export default cards;
