@@ -69,7 +69,7 @@ const createMiniDeck = (stage, difficulty) => {
             miniDeck.push(card);
         })
 
-        shuffleCards.splice(0, stage[color]);
+        filteredCards.splice(0, stage[color]);
     }
 
     return shuffle(miniDeck);
