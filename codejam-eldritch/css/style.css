@@ -38,13 +38,19 @@ body:before {
     text-align: center;
 }
 
+.logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
 .logo .title {
-    color: #252d6d;
+    color: #1b203e;
     z-index: 1;
     position: relative;
     bottom: 45px;
     right: 60px;
+    font-style: italic;
     text-shadow: 0 0 8px #ece4ce;
 }
 

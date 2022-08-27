@@ -34,7 +34,7 @@ const addAncients = () => {
         ancientList.appendChild(li);
 
         li.style.backgroundImage = `url(${ancient.cardFace})`;
-        li.setAttribute('data-id', `${index}`)
+        li.setAttribute('data-id', `${index}`);
     })
 }
 
@@ -53,9 +53,9 @@ const createMiniDeck = (stage, difficulty) => {
             filteredCards;
 
         if (difficulty === 'easy') {
-            filteredCards = shuffleCards.filter(card => card.difficulty !== 'hard')
+            filteredCards = shuffleCards.filter(card => card.difficulty !== 'hard');
         } else if (difficulty === 'hard') {
-            filteredCards = shuffleCards.filter(card => card.difficulty !== 'easy')
+            filteredCards = shuffleCards.filter(card => card.difficulty !== 'easy');
         } else if (difficulty === 'normal') {
             filteredCards = shuffleCards;
         }
@@ -93,7 +93,7 @@ const displayDeck = deck => {
 
         console.log(currentCard);
 
-        changeState(currentCard)
+        changeState(currentCard);
     }
 
     if (deck.length === 0) {
@@ -171,7 +171,9 @@ document.querySelector('.shuffle').addEventListener('click', () => {
         deck = miniDecks.flat();
         console.log(deck);
     }
+    stage = 0;
 
+    setDefaultState(currentAncientId);
     cardsContainer.innerHTML = '';
 })
 
