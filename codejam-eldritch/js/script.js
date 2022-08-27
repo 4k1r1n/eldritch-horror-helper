@@ -29,11 +29,16 @@ setBg();
 
 const addAncients = () => {
     ancientsData.forEach((ancient, index) => {
+        const img = new Image();
+
         let li = document.createElement('li');
         li.classList.add('ancient-card');
         ancientList.appendChild(li);
 
-        li.style.backgroundImage = `url(${ancient.cardFace})`;
+        img.src = ancient.cardFace
+        img.onload = () => {
+            li.style.backgroundImage = `url(${img.src})`;
+        };
         li.setAttribute('data-id', `${index}`);
     })
 }
@@ -87,6 +92,7 @@ const displayDeck = deck => {
         let currentCard = deck.pop();
 
         img.src = currentCard.cardFace;
+
         img.onload = () => {
             div.style.backgroundImage = `url(${img.src})`;
         };
