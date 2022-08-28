@@ -31,14 +31,16 @@ const addAncients = () => {
     ancientsData.forEach((ancient, index) => {
         const img = new Image();
 
-        let li = document.createElement('li');
+        const li = document.createElement('li');
         li.classList.add('ancient-card');
         ancientList.appendChild(li);
 
         img.src = ancient.cardFace;
+
         img.onload = () => {
             li.style.backgroundImage = `url(${img.src})`;
         };
+
         li.setAttribute('data-id', `${index}`);
     })
 }
@@ -50,10 +52,15 @@ const shuffle = array => {
 }
 
 const filterCards = (difficulty, cards) => {
-    let filteredCards = [];
+    const filteredCards = [],
+        additionalCards = [],
+
+        result = [filteredCards, additionalCards];
 
     for (let color in cards) {
-        let shuffleCards = shuffle(cards[color]);
+        const shuffleCards = shuffle(cards[color]);
+
+        additionalCards.push(shuffleCards.filter(card => card.difficulty === 'normal'));
 
         if (difficulty === 'easy') {
             filteredCards.push(shuffleCards.filter(card => card.difficulty !== 'hard'));
@@ -61,33 +68,45 @@ const filterCards = (difficulty, cards) => {
             filteredCards.push(shuffleCards.filter(card => card.difficulty !== 'easy'));
         } else if (difficulty === 'normal') {
             filteredCards.push(shuffleCards);
+        } else if (difficulty === 'superEasy') {
+            filteredCards.push(shuffleCards.filter(card => card.difficulty === 'easy'));
+        } else if (difficulty === 'superHard') {
+            filteredCards.push(shuffleCards.filter(card => card.difficulty === 'hard'));
         }
     }
 
-    [filteredCards[0], filteredCards[1]] = [filteredCards[1], filteredCards[0]];
-
-    return filteredCards.reverse();
+    return result;
 }
 
 const createMiniDeck = (stage, filteredCards) => {
-    let miniDeck = [];
+    const miniDeck = [],
+        newFilteredCards = filteredCards[0],
+        additionalCards = filteredCards[1];
 
-    filteredCards.map((cards, i) => {
-        cards.slice(0, Object.values(stage)[i]).map(card => {
-            miniDeck.push(card)
-        })
+    newFilteredCards.map((cards, i) => {
+        if (cards.length < Object.values(stage)[i]) {
+            miniDeck.push(additionalCards[i].slice(0, Object.values(stage)[i]));
+
+            additionalCards.map((cards, i) => {
+                cards.splice(0, Object.values(stage)[i]);
+            })
+        } else {
+            cards.slice(0, Object.values(stage)[i]).map(card => {
+                miniDeck.push(card);
+            });
+        }
     })
 
-    filteredCards.map((cards, i) => {
-        cards.splice(0, Object.values(stage)[i])
+    newFilteredCards.map((cards, i) => {
+        cards.splice(0, Object.values(stage)[i]);
     })
 
-    return shuffle(miniDeck);
+    return shuffle(miniDeck.flat());
 }
 
 const collectDeck = (id, difficulty) => {
-    let newCards = JSON.parse(JSON.stringify(cards));
-    let filteredCards = filterCards(difficulty, newCards);
+    const newCards = JSON.parse(JSON.stringify(cards)),
+        filteredCards = filterCards(difficulty, newCards);
 
     const firstStage = createMiniDeck(ancientsData[id].firstStage, filteredCards),
         secondStage = createMiniDeck(ancientsData[id].secondStage, filteredCards),
@@ -99,11 +118,11 @@ const displayDeck = deck => {
     if (deck.length) {
         const img = new Image();
 
-        let div = document.createElement('div');
+        const div = document.createElement('div');
         div.classList.add('card');
         cardsContainer.appendChild(div);
 
-        let currentCard = deck.pop();
+        const currentCard = deck.pop();
 
         img.src = currentCard.cardFace;
 
@@ -129,7 +148,7 @@ const setDefaultState = (currentAncientId) => {
             thirdStage = ancientsData[currentAncientId].thirdStage,
             stages = [firstStage, secondStage, thirdStage];
 
-        let states = [];
+        const states = [];
 
         for (let state in stages) {
             states.push(Object.values(stages[state]));
@@ -191,6 +210,7 @@ document.querySelector('.shuffle').addEventListener('click', () => {
         deck = miniDecks.flat();
         console.log(deck);
     }
+
     stage = 0;
 
     setDefaultState(currentAncientId);
