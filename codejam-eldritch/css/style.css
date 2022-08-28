@@ -271,7 +271,7 @@ body:before {
     width: 130px;
     border-radius: 15px;
     margin: -60px;
-    animation: slide-up .2s linear;
+    /* animation: slide-up .2s linear; */
 }
 
 .footer {
