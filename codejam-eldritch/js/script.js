@@ -49,34 +49,49 @@ const shuffle = array => {
     return array.sort(() => Math.random() - 0.5);
 }
 
-const createMiniDeck = (stage, difficulty) => {
-    let miniDeck = [],
-        newCards = JSON.parse(JSON.stringify(cards));
+const filterCards = (difficulty, cards) => {
+    let filteredCards = [];
 
-    for (let color in newCards) {
-        let shuffleCards = shuffle(newCards[color]);
+    for (let color in cards) {
+        let shuffleCards = shuffle(cards[color]);
 
         if (difficulty === 'easy') {
-            shuffleCards = shuffleCards.filter(card => card.difficulty !== 'hard');
+            filteredCards.push(shuffleCards.filter(card => card.difficulty !== 'hard'));
         } else if (difficulty === 'hard') {
-            shuffleCards = shuffleCards.filter(card => card.difficulty !== 'easy');
+            filteredCards.push(shuffleCards.filter(card => card.difficulty !== 'easy'));
         } else if (difficulty === 'normal') {
-            shuffleCards = shuffleCards;
+            filteredCards.push(shuffleCards);
         }
-
-        shuffleCards.slice(0, stage[color]).map(card => {
-            miniDeck.push(card);
-        })
-
-        shuffleCards.splice(0, stage[color]);
     }
+
+    [filteredCards[0], filteredCards[1]] = [filteredCards[1], filteredCards[0]];
+
+    return filteredCards.reverse();
+}
+
+const createMiniDeck = (stage, filteredCards) => {
+    let miniDeck = [];
+
+    filteredCards.map((cards, i) => {
+        cards.slice(0, Object.values(stage)[i]).map(card => {
+            miniDeck.push(card)
+        })
+    })
+
+    filteredCards.map((cards, i) => {
+        cards.splice(0, Object.values(stage)[i])
+    })
 
     return shuffle(miniDeck);
 }
+
 const collectDeck = (id, difficulty) => {
-    const firstStage = createMiniDeck(ancientsData[id].firstStage, difficulty),
-        secondStage = createMiniDeck(ancientsData[id].secondStage, difficulty),
-        thirdStage = createMiniDeck(ancientsData[id].thirdStage, difficulty);
+    let newCards = JSON.parse(JSON.stringify(cards));
+    let filteredCards = filterCards(difficulty, newCards);
+
+    const firstStage = createMiniDeck(ancientsData[id].firstStage, filteredCards),
+        secondStage = createMiniDeck(ancientsData[id].secondStage, filteredCards),
+        thirdStage = createMiniDeck(ancientsData[id].thirdStage, filteredCards);
     return [thirdStage, secondStage, firstStage];
 }
 
