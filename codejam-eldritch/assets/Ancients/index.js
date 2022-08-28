@@ -1,8 +1,8 @@
 const ancients = {
-  azathoth: './assets/Ancients/Azathoth.png',
-  cthulhu: './assets/Ancients/Cthulthu.png',
-  iogSothoth: './assets/Ancients/IogSothoth.png',
-  shubNiggurath: './assets/Ancients/ShubNiggurath.png',
+  azathoth: './assets/Ancients/Azathoth.jpg',
+  cthulhu: './assets/Ancients/Cthulthu.jpg',
+  iogSothoth: './assets/Ancients/IogSothoth.jpg',
+  shubNiggurath: './assets/Ancients/ShubNiggurath.jpg',
 }
 
 export default ancients;

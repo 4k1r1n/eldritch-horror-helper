@@ -35,7 +35,7 @@ const addAncients = () => {
         li.classList.add('ancient-card');
         ancientList.appendChild(li);
 
-        img.src = ancient.cardFace
+        img.src = ancient.cardFace;
         img.onload = () => {
             li.style.backgroundImage = `url(${img.src})`;
         };
@@ -183,7 +183,7 @@ ancientList.addEventListener('click', e => {
 
 document.querySelector('.shuffle').addEventListener('click', () => {
     if (currentAncientId && currentDifficulty) {
-        deckContainer.style.backgroundImage = 'url(./assets/mythicCardBackground.png)';
+        deckContainer.style.backgroundImage = 'url(./assets/mythicCardBackground.jpg)';
         deckContainer.classList.add('active');
         stateContainer.classList.add('active');
 
