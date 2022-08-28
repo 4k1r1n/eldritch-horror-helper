@@ -54,7 +54,6 @@ const shuffle = array => {
 const filterCards = (difficulty, cards) => {
     const filteredCards = [],
         additionalCards = [],
-
         result = [filteredCards, additionalCards];
 
     for (let color in cards) {

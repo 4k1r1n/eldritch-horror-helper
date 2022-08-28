@@ -35,7 +35,7 @@ body:before {
 }
 
 .header {
-    text-align: center;
+    height: 14%;
 }
 
 .logo {
@@ -48,38 +48,22 @@ body:before {
     color: #1b203e;
     z-index: 1;
     position: relative;
-    bottom: 45px;
+    bottom: 34px;
     right: 60px;
     font-style: italic;
     text-shadow: 0 0 8px #ece4ce;
 }
 
 .logo img {
-    max-width: 250px;
-    margin: 10px 0;
+    max-width: 230px;
 }
 
 .main {
     display: flex;
     align-items: center;
     flex-direction: column;
-    gap: 60px;
+    gap: 30px;
     flex: 1 0 auto;
-}
-
-.settings {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 10%;
-    width: 100%;
-}
-
-.ancients-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
 }
 
 @keyframes append-animate {
@@ -106,19 +90,37 @@ body:before {
     }
 }
 
+.settings {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10%;
+    width: 100%;
+}
+
+.ancients-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    align-items: center;
+}
+
 .ancient-card {
-    background-position: 50%;
+    background-position: center;
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size: cover;
     cursor: pointer;
     height: 260px;
     width: 200px;
     border-radius: 15px;
-    transition: all .3s ease-in-out;
+    transition: all .7s ease-in;
 }
 
 .ancient-card.active {
     box-shadow: 0 0 15px 7px #5d170b;
+    width: 260px;
+    height: 350px;
 }
 
 .general,
@@ -250,8 +252,8 @@ body:before {
 
 .deck {
     background-size: cover;
-    height: 190px;
-    width: 130px;
+    height: 240px;
+    width: 160px;
     border-radius: 15px;
     cursor: pointer;
     visibility: hidden;
@@ -267,10 +269,10 @@ body:before {
 
 .card {
     background-size: cover;
-    height: 190px;
-    width: 130px;
+    height: 240px;
+    width: 160px;
     border-radius: 15px;
-    margin: -60px;
+    margin: -74px;
     /* animation: slide-up .2s linear; */
 }
 
