@@ -181,7 +181,12 @@ ancientList.addEventListener('click', e => {
         currentAncient = ancientsData[e.target.dataset.id].id;
     }
 
-    setBg(currentAncient);
+    if (e.target.classList.contains('ancient-card')) {
+        setBg(currentAncient);
+    } else {
+        setBg()
+    }
+
     setDefaultState(currentAncientId);
 
     cardsContainer.innerHTML = '';
