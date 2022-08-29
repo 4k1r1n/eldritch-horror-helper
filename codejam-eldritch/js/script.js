@@ -52,14 +52,10 @@ const shuffle = array => {
 }
 
 const filterCards = (difficulty, cards) => {
-    const filteredCards = [],
-        additionalCards = [],
-        result = [filteredCards, additionalCards];
+    const filteredCards = [];
 
     for (let color in cards) {
         const shuffleCards = shuffle(cards[color]);
-
-        additionalCards.push(shuffleCards.filter(card => card.difficulty === 'normal'));
 
         if (difficulty === 'easy') {
             filteredCards.push(shuffleCards.filter(card => card.difficulty !== 'hard'));
@@ -68,39 +64,33 @@ const filterCards = (difficulty, cards) => {
         } else if (difficulty === 'normal') {
             filteredCards.push(shuffleCards);
         } else if (difficulty === 'superEasy') {
-            filteredCards.push(shuffleCards.filter(card => card.difficulty === 'easy'));
+            filteredCards.push(shuffleCards
+                .filter(card => card.difficulty !== 'hard')
+                .sort((a, b) => a.difficulty > b.difficulty ? 1 : -1));
         } else if (difficulty === 'superHard') {
-            filteredCards.push(shuffleCards.filter(card => card.difficulty === 'hard'));
+            filteredCards.push(shuffleCards
+                .filter(card => card.difficulty !== 'easy')
+                .sort((a, b) => a.difficulty > b.difficulty ? 1 : -1));
         }
     }
 
-    return result;
+    return filteredCards;
 }
 
 const createMiniDeck = (stage, filteredCards) => {
-    const miniDeck = [],
-        newFilteredCards = filteredCards[0],
-        additionalCards = filteredCards[1];
+    const miniDeck = [];
 
-    newFilteredCards.map((cards, i) => {
-        if (cards.length < Object.values(stage)[i]) {
-            miniDeck.push(additionalCards[i].slice(0, Object.values(stage)[i]));
-
-            additionalCards.map((cards, i) => {
-                cards.splice(0, Object.values(stage)[i]);
-            })
-        } else {
-            cards.slice(0, Object.values(stage)[i]).map(card => {
-                miniDeck.push(card);
-            });
-        }
+    filteredCards.map((cards, i) => {
+        cards.slice(0, Object.values(stage)[i]).map(card => {
+            miniDeck.push(card);
+        });
     })
 
-    newFilteredCards.map((cards, i) => {
+    filteredCards.map((cards, i) => {
         cards.splice(0, Object.values(stage)[i]);
     })
 
-    return shuffle(miniDeck.flat());
+    return shuffle(miniDeck);
 }
 
 const collectDeck = (id, difficulty) => {
