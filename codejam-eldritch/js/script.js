@@ -184,7 +184,7 @@ ancientList.addEventListener('click', e => {
     if (e.target.classList.contains('ancient-card')) {
         setBg(currentAncient);
     } else {
-        setBg()
+        setBg();
     }
 
     setDefaultState(currentAncientId);
