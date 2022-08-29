@@ -199,7 +199,7 @@ body:before {
 
 .current-state.active {
     visibility: visible;
-    animation: append-animate .2s linear;
+    /* animation: append-animate .2s linear; */
 }
 
 .current-state .title {
