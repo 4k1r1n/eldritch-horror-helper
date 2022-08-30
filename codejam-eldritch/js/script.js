@@ -77,29 +77,64 @@ const filterCards = (difficulty, cards) => {
     return filteredCards;
 }
 
-const createMiniDeck = (stage, filteredCards) => {
-    const miniDeck = [];
+const sliceCardSet = (filteredCards) => {
+    const stagesColorsSum = getSumColorsStageCards(currentAncientId);
 
     filteredCards.map((cards, i) => {
+        cards.splice(stagesColorsSum[i]);
+        shuffle(cards);
+    });
+
+    return filteredCards;
+}
+
+const getSumColorsStageCards = (currentAncientId) => {
+    const firstStage = ancientsData[currentAncientId].firstStage,
+        secondStage = ancientsData[currentAncientId].secondStage,
+        thirdStage = ancientsData[currentAncientId].thirdStage,
+
+        stages = [firstStage, secondStage, thirdStage];
+
+    const sumGreenCards = stages.reduce((acc, stage) => {
+        return acc + stage.greenCards;
+    }, 0)
+
+    const sumYellowCards = stages.reduce((acc, stage) => {
+        return acc + stage.yellowCards;
+    }, 0)
+
+    const sumBlueCards = stages.reduce((acc, stage) => {
+        return acc + stage.blueCards;
+    }, 0)
+
+    return [sumGreenCards, sumYellowCards, sumBlueCards];
+}
+
+const createMiniDeck = (stage, filteredCards) => {
+    const miniDeck = [],
+        cardSet = sliceCardSet(filteredCards);
+
+    cardSet.map((cards, i) => {
         cards.slice(0, Object.values(stage)[i]).map(card => {
             miniDeck.push(card);
         });
     })
 
-    filteredCards.map((cards, i) => {
+    cardSet.map((cards, i) => {
         cards.splice(0, Object.values(stage)[i]);
     })
 
     return shuffle(miniDeck);
 }
 
-const collectDeck = (id, difficulty) => {
+const constructDeck = (id, difficulty) => {
     const newCards = JSON.parse(JSON.stringify(cards)),
         filteredCards = filterCards(difficulty, newCards);
 
     const firstStage = createMiniDeck(ancientsData[id].firstStage, filteredCards),
         secondStage = createMiniDeck(ancientsData[id].secondStage, filteredCards),
         thirdStage = createMiniDeck(ancientsData[id].thirdStage, filteredCards);
+
     return [thirdStage, secondStage, firstStage];
 }
 
@@ -200,7 +235,7 @@ document.querySelector('.shuffle').addEventListener('click', () => {
         deckContainer.classList.add('active');
         stateContainer.classList.add('active');
 
-        miniDecks = collectDeck(currentAncientId, currentDifficulty);
+        miniDecks = constructDeck(currentAncientId, currentDifficulty);
         deck = miniDecks.flat();
         console.log(deck);
     }
