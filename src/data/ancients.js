@@ -5,81 +5,89 @@ const ancientsData = [
     id: 'azathoth',
     name: 'azathoth',
     cardFace: ancientsAssets.azathoth,
-    firstStage: {
-      greenCards: 1,
-      yellowCards: 2,
-      blueCards: 1,
-    },
-    secondStage: {
-      greenCards: 2,
-      yellowCards: 3,
-      blueCards: 1,
-    },
-    thirdStage: {
-      greenCards: 2,
-      yellowCards: 4,
-      blueCards: 0,
-    },
+    cardsCount: [
+      {
+        green: 1,
+        yellow: 2,
+        blue: 1,
+      },
+      {
+        green: 2,
+        yellow: 3,
+        blue: 1,
+      },
+      {
+        green: 2,
+        yellow: 4,
+        blue: 0,
+      },
+    ],
   },
   {
     id: 'cthulhu',
     name: 'cthulhu',
     cardFace: ancientsAssets.cthulhu,
-    firstStage: {
-      greenCards: 0,
-      yellowCards: 2,
-      blueCards: 2,
-    },
-    secondStage: {
-      greenCards: 1,
-      yellowCards: 3,
-      blueCards: 0,
-    },
-    thirdStage: {
-      greenCards: 3,
-      yellowCards: 4,
-      blueCards: 0,
-    },
+    cardsCount: [
+      {
+        green: 0,
+        yellow: 2,
+        blue: 2,
+      },
+      {
+        green: 1,
+        yellow: 3,
+        blue: 0,
+      },
+      {
+        green: 3,
+        yellow: 4,
+        blue: 0,
+      },
+    ],
   },
   {
     id: 'iogSothoth',
     name: 'iogSothoth',
     cardFace: ancientsAssets.iogSothoth,
-    firstStage: {
-      greenCards: 0,
-      yellowCards: 2,
-      blueCards: 1,
-    },
-    secondStage: {
-      greenCards: 2,
-      yellowCards: 3,
-      blueCards: 1,
-    },
-    thirdStage: {
-      greenCards: 3,
-      yellowCards: 4,
-      blueCards: 0,
-    },
+    cardsCount: [
+      {
+        green: 0,
+        yellow: 2,
+        blue: 1,
+      },
+      {
+        green: 2,
+        yellow: 3,
+        blue: 1,
+      },
+      {
+        green: 3,
+        yellow: 4,
+        blue: 0,
+      },
+    ],
   },
   {
     id: 'shubNiggurath',
     name: 'shubNiggurath',
     cardFace: ancientsAssets.shubNiggurath,
-    firstStage: {
-      greenCards: 1,
-      yellowCards: 2,
-      blueCards: 1,
-    },
-    secondStage: {
-      greenCards: 3,
-      yellowCards: 2,
-      blueCards: 1,
-    },
-    thirdStage: {
-      greenCards: 2,
-      yellowCards: 4,
-      blueCards: 0,
-    },
+    cardsCount: [
+      {
+        green: 1,
+        yellow: 2,
+        blue: 1,
+      },
+      {
+        green: 3,
+        yellow: 2,
+        blue: 1,
+      },
+      {
+        green: 2,
+        yellow: 4,
+        blue: 0,
+      },
+    ],
   },
 ];
 

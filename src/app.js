@@ -1,8 +1,9 @@
 import 'normalize.css';
 import './style.css';
+import shuffle from './utils/utils';
 import ancientsData from './data/ancients';
-import cardsData from './data/mythic-cards';
 import difficulties from './data/difficulties';
+import cardsData from './data/mythic-cards';
 import {
   ancientList,
   cardsContainer,
@@ -25,47 +26,7 @@ let miniDecks;
 let currentAncient;
 let currentAncientId;
 let currentDifficulty;
-
 let stage = 0;
-
-logo.src = logoImage;
-
-const setBg = (ancient) => {
-  const img = new Image();
-
-  if (ancient) {
-    img.src = ancientsBackgrounds[ancient];
-  } else {
-    img.src = homeBackground;
-  }
-
-  img.onload = () => {
-    document.body.style.backgroundImage = `url(${img.src})`;
-  };
-};
-
-setBg();
-
-const addAncients = () => {
-  ancientsData.forEach((ancient, index) => {
-    const img = new Image();
-    const li = document.createElement('li');
-
-    li.classList.add('ancient-card');
-    ancientList.appendChild(li);
-    img.src = ancient.cardFace;
-    img.onload = () => {
-      li.style.backgroundImage = `url(${img.src})`;
-    };
-    li.setAttribute('data-id', `${index}`);
-  });
-};
-
-addAncients();
-
-const shuffle = (array) => {
-  return array.sort(() => Math.random() - 0.5);
-};
 
 const filterCardsByDifficulty = (difficulty, cards) => {
   let filteredCards;
@@ -97,61 +58,88 @@ const filterCards = (difficulty, cards) => {
   const filteredCardsByColor = Object.keys(cards).map((color) => {
     const shuffleCards = shuffle(cards[color]);
     const filteredCardsByDifficulty = filterCardsByDifficulty(difficulty, shuffleCards);
-    return filteredCardsByDifficulty;
+    return { [color]: filteredCardsByDifficulty };
   });
-  return filteredCardsByColor;
+  return Object.assign({}, ...filteredCardsByColor);
 };
 
-const getSumColorsStageCards = (id) => {
-  const { firstStage, secondStage, thirdStage } = ancientsData[id];
-  const stages = [firstStage, secondStage, thirdStage];
-  const sumGreenCards = stages.reduce((acc, currentStage) => {
-    return acc + currentStage.greenCards;
-  }, 0);
-  const sumYellowCards = stages.reduce((acc, currentStage) => {
-    return acc + currentStage.yellowCards;
-  }, 0);
-  const sumBlueCards = stages.reduce((acc, currentStage) => {
-    return acc + currentStage.blueCards;
-  }, 0);
-  return [sumGreenCards, sumYellowCards, sumBlueCards];
+const getSumOfCardsForStagesByColors = (id) => {
+  const { cardsCount } = ancientsData[id];
+  const sumOfCards = cardsCount.reduce(
+    (acc, current) => {
+      return {
+        green: acc.green + current.green,
+        yellow: acc.yellow + current.yellow,
+        blue: acc.blue + current.blue,
+      };
+    },
+    { green: 0, yellow: 0, blue: 0 },
+  );
+  return sumOfCards;
 };
 
-const sliceCardSet = (filteredCards) => {
-  const stagesColorsSum = getSumColorsStageCards(currentAncientId);
-  filteredCards.forEach((cards, i) => {
-    cards.splice(stagesColorsSum[i]);
-    shuffle(cards);
+const sliceCardSet = (cards) => {
+  const stagesColorsSum = getSumOfCardsForStagesByColors(currentAncientId);
+  Object.keys(cards).forEach((color) => {
+    cards[color].splice(stagesColorsSum[color]);
+    shuffle(cards[color]);
   });
-  return filteredCards;
+  return cards;
 };
 
-const createMiniDeck = (currentStage, filteredCards) => {
+const createMiniDeck = (number, cards) => {
   const miniDeck = [];
-  const cardSet = sliceCardSet(filteredCards);
-
-  cardSet.forEach((cards, i) => {
-    cards.slice(0, Object.values(currentStage)[i]).forEach((card) => {
-      miniDeck.push(card);
-    });
+  const cardSet = sliceCardSet(cards);
+  Object.keys(cardSet).forEach((color) => {
+    cardSet[color].slice(0, number[color]).forEach((card) => miniDeck.push(card));
   });
-  cardSet.forEach((cards, i) => {
-    cards.splice(0, Object.values(currentStage)[i]);
-  });
-
+  Object.keys(cardSet).forEach((color) => cardSet[color].splice(0, number[color]));
   return shuffle(miniDeck);
 };
 
 const constructDeck = (id, difficulty) => {
   const newCards = JSON.parse(JSON.stringify(cardsData));
   const filteredCards = filterCards(difficulty, newCards);
-  console.log(JSON.parse(JSON.stringify(filteredCards)));
-  const firstStage = createMiniDeck(ancientsData[id].firstStage, filteredCards);
-  const secondStage = createMiniDeck(ancientsData[id].secondStage, filteredCards);
-  const thirdStage = createMiniDeck(ancientsData[id].thirdStage, filteredCards);
-
-  return [thirdStage, secondStage, firstStage];
+  const fullDeck = [];
+  for (let i = 0; i < 3; i += 1) {
+    const numberOfCardsForStage = ancientsData[id].cardsCount[i];
+    fullDeck.push(createMiniDeck(numberOfCardsForStage, filteredCards));
+  }
+  return fullDeck;
 };
+
+logo.src = logoImage;
+const setBg = (ancient) => {
+  const img = new Image();
+
+  if (ancient) {
+    img.src = ancientsBackgrounds[ancient];
+  } else {
+    img.src = homeBackground;
+  }
+
+  img.onload = () => {
+    document.body.style.backgroundImage = `url(${img.src})`;
+  };
+};
+
+const addAncients = () => {
+  ancientsData.forEach((ancient, index) => {
+    const img = new Image();
+    const li = document.createElement('li');
+
+    li.classList.add('ancient-card');
+    ancientList.appendChild(li);
+    img.src = ancient.cardFace;
+    img.onload = () => {
+      li.style.backgroundImage = `url(${img.src})`;
+    };
+    li.setAttribute('data-id', `${index}`);
+  });
+};
+
+setBg();
+addAncients();
 
 const changeState = (currentCard) => {
   if (
@@ -162,13 +150,22 @@ const changeState = (currentCard) => {
     stage += 1;
   }
 
-  if (currentCard.color === 'green') {
-    greenStateCards[stage].textContent -= 1;
-  } else if (currentCard.color === 'blue') {
-    blueStateCards[stage].textContent -= 1;
-  } else {
-    yellowStateCards[stage].textContent -= 1;
+  switch (currentCard.color) {
+    case 'green':
+      greenStateCards[stage].textContent -= 1;
+      break;
+    case 'blue':
+      blueStateCards[stage].textContent -= 1;
+      break;
+    default:
+      yellowStateCards[stage].textContent -= 1;
+      break;
   }
+};
+
+const removeCardsBackground = () => {
+  deckContainer.style.backgroundImage = '';
+  deckContainer.classList.remove('active');
 };
 
 const displayDeck = (currentDeck) => {
@@ -180,30 +177,26 @@ const displayDeck = (currentDeck) => {
     const currentCard = currentDeck.pop();
 
     img.src = currentCard.cardFace;
-
     img.onload = () => {
       div.style.backgroundImage = `url(${img.src})`;
     };
 
     console.log(currentCard);
-
     changeState(currentCard);
   }
 
   if (currentDeck.length === 0) {
-    deckContainer.style.backgroundImage = '';
-    deckContainer.classList.remove('active');
+    removeCardsBackground();
   }
 };
 
-const setDefaultState = (id) => {
+const setTracker = (id) => {
   if (id) {
-    const { firstStage, secondStage, thirdStage } = ancientsData[id];
-    const stages = [firstStage, secondStage, thirdStage];
+    const { cardsCount } = ancientsData[id];
     const states = [];
 
-    Object.keys(stages).forEach((state) => {
-      states.push(Object.values(stages[state]));
+    Object.keys(cardsCount).forEach((state) => {
+      states.push(Object.values(cardsCount[state]));
     });
 
     rectangles.forEach((state, num) => {
@@ -238,7 +231,7 @@ ancientList.addEventListener('click', (e) => {
     setBg();
   }
 
-  setDefaultState(currentAncientId);
+  setTracker(currentAncientId);
 
   cardsContainer.innerHTML = '';
   deckContainer.classList.remove('active');
@@ -252,13 +245,13 @@ document.querySelector('.shuffle').addEventListener('click', () => {
     stateContainer.classList.add('active');
 
     miniDecks = constructDeck(currentAncientId, currentDifficulty);
-    deck = miniDecks.flat();
+    deck = miniDecks.flat().reverse();
     console.log(deck);
   }
 
   stage = 0;
 
-  setDefaultState(currentAncientId);
+  setTracker(currentAncientId);
   cardsContainer.innerHTML = '';
 });
 
