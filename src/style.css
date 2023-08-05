@@ -38,13 +38,13 @@ body:before {
     height: 14%;
 }
 
-.logo {
+.logo-container {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.logo .title {
+.logo-container .title {
     color: #1b203e;
     z-index: 1;
     position: relative;
@@ -54,7 +54,7 @@ body:before {
     text-shadow: 0 0 8px #ece4ce;
 }
 
-.logo img {
+.logo-container img {
     max-width: 230px;
 }
 
@@ -297,13 +297,13 @@ body:before {
 
 .github {
     width: 32px;
-    background-image: url("../assets/copyright/github.svg");
+    background-image: url("./assets/icons/github.svg");
     background-size: 32px;
 }
 
 .rs-school {
     width: 50px;
-    background-image: url("../assets/copyright/rs-school.svg");
+    background-image: url("./assets/icons/rs-school.svg");
     background-size: 50px;
 }
 
