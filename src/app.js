@@ -1,4 +1,5 @@
 import 'normalize.css';
+import './css/fonts.css';
 import './style.css';
 import shuffle from './utils/utils';
 import ancientsData from './data/ancients';
@@ -109,6 +110,7 @@ const constructDeck = (id, difficulty) => {
 };
 
 logo.src = logoImage;
+
 const setBg = (ancient) => {
   const img = new Image();
 

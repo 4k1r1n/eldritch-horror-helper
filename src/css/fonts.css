@@ -1,0 +1,6 @@
+@font-face {
+  font-family: 'Birmingham';
+  src: url('../assets/fonts/Birmingham.woff2') format('woff2'),
+    url('../assets/fonts/Birmingham.woff') format('woff');
+  font-weight: 400;
+}
