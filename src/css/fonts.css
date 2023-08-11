@@ -4,3 +4,17 @@
     url('../assets/fonts/Birmingham.woff') format('woff');
   font-weight: 400;
 }
+
+@font-face {
+  font-family: 'Medieval';
+  src: url('../assets/fonts/Medieval.woff2') format('woff2'),
+    url('../assets/fonts/Medieval.woff') format('woff');
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: 'Bookman Old Style Cyr';
+  src: url('../assets/fonts/Bookman_Old_Style_Cyr.woff') format('woff2'),
+    url('../assets/fonts/Bookman_Old_Style_Cyr.woff') format('woff');
+  font-weight: 400;
+}
