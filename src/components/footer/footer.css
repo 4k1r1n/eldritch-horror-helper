@@ -1,0 +1,49 @@
+.footer {
+  flex-shrink: 0;
+}
+
+.footer__wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.footer-copyright {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.footer-copyright__year {
+  font-size: 2.0rem;
+  opacity: 0.3;
+  cursor: default;
+  font-weight: 700;
+  font-family: 'Birmingham', sans-serif;
+  letter-spacing: 2px;
+}
+
+.link {
+  display: block;
+  height: 32px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  opacity: 0.3;
+  transition: all 0.3s ease-in-out;
+}
+
+.link:hover {
+  opacity: 1;
+}
+
+.link_github {
+  width: 32px;
+  background-image: url("../../assets/icons/github.svg");
+  background-size: 32px;
+}
+
+.link_rs {
+  width: 50px;
+  background-image: url("../../assets/icons/rs.svg");
+  background-size: 50px;
+}
