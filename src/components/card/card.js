@@ -3,7 +3,7 @@ import BaseComponent from '../../utils/base-component';
 import cardBackground from '../../assets/images/mythic-cards/back.jpg';
 
 class Card extends BaseComponent {
-  constructor(cardInfo) {
+  constructor(cardInfo, onCardClick) {
     super({
       className: 'deck__card card',
     });
@@ -17,6 +17,9 @@ class Card extends BaseComponent {
     });
     this.cardFaceFront.node.src = cardBackground;
     this.cardFaceBack.node.src = cardInfo.cardFace;
+    this.node.addEventListener('transitionend', () => {
+      onCardClick(cardInfo);
+    });
     this.node.addEventListener('click', () => {
       this.addClass('is-flipped');
     });

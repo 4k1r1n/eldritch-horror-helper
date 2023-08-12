@@ -6,17 +6,18 @@ import Card from '../card/card';
 import state from '../../state';
 
 class Deck extends BaseComponent {
-  constructor() {
+  constructor(onCardClick) {
     super({
       className: 'deck',
     });
     this.state = state;
+    this.onCardClick = onCardClick;
   }
 
   render() {
     const deck = this.state.currentDeck;
     for (let i = 0; i < deck.length; i += 1) {
-      const card = new Card(deck[i]);
+      const card = new Card(deck[i], this.onCardClick);
       card.render();
       card.node.style.right = `${i * 1}px`;
       card.node.style.bottom = `${i * 1}px`;
