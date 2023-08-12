@@ -1,0 +1,8 @@
+.game {
+  animation: slide-up .3s linear;
+}
+
+.game__button {
+  display: flex;
+  justify-content: center;
+}
