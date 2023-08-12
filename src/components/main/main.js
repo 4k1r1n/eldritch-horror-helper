@@ -1,6 +1,7 @@
 import './main.css';
 import state from '../../state';
 import BaseComponent from '../../utils/base-component';
+import Settings from '../settings/settings';
 import backgrounds from '../../constants/backgrounds';
 import homeBackground from '../../assets/images/backgrounds/Home.webp';
 
@@ -30,7 +31,29 @@ class Main extends BaseComponent {
   }
 
   render() {
+    const settings = new Settings();
+    this.appendToDom(this.wrapper.node);
+    this.wrapper.appendToDom(settings.node);
+    settings.renderAncientsSettings();
     this.constructor.setBackground();
+  }
+
+  renderCurrentSettings(ancient, difficulty) {
+    const currentSettings = new BaseComponent({
+      className: 'current-settings',
+    });
+    const currentAncient = new BaseComponent({
+      tagName: 'span',
+      className: 'current-settings__ancient',
+      content: `${ancient.name}`,
+    });
+    const currentDifficulty = new BaseComponent({
+      tagName: 'span',
+      className: 'current-settings__difficulty',
+      content: `Уровень сложности: ${difficulty.name}`,
+    });
+    this.game.appendToDom(currentSettings.node);
+    currentSettings.appendToDom(currentAncient.node, currentDifficulty.node);
   }
 
   static setBackground() {
