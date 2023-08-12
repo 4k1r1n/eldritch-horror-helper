@@ -30,6 +30,15 @@ class Main extends BaseComponent {
       className: 'button button_shadow',
       content: 'Начать заново',
     });
+    this.buttonRetry.node.addEventListener('click', () => {
+      this.wrapper.destroyChildren();
+      this.game.destroyChildren();
+      this.state.setAncient = null;
+      this.state.setDifficulty = null;
+      this.state.setDeck = null;
+      this.state.setStage = 0;
+      this.render();
+    });
   }
 
   render() {
