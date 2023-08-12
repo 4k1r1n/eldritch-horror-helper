@@ -1,0 +1,64 @@
+.tracker {
+  opacity: 0.9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 2rem;
+  background-color: var(--primary);
+  margin-bottom: 40px;
+  clip-path: var(--block-background);
+  width: fit-content;
+  padding: 35px 50px;
+  gap: 12px;
+  color: var(--additional);
+  margin: auto;
+}
+
+.tracker__title {
+  margin-bottom: 10px;
+}
+
+.stage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  font-family: 'Bookman Old Style Cyr', sans-serif;
+}
+
+.stage:nth-of-type(2) {
+  gap: 15px;
+}
+
+.stage__title {
+  font-size: 1.8rem;
+}
+
+.counter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.counter__item {
+  width: 50px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid var(--light);
+  color: var(--light);
+}
+
+.counter__item_green {
+  background-color: var(--green-cards);
+}
+
+.counter__item_yellow {
+  background-color: var(--yellow-cards);
+}
+
+.counter__item_blue {
+  background-color: var(--blue-cards);
+}
