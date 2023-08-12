@@ -1,0 +1,7 @@
+.settings__wrapper {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+  animation: slide-up .3s linear;
+}
