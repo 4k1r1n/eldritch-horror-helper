@@ -1,0 +1,7 @@
+.deck {
+  position: relative;
+  width: 200px;
+  height: 290px;
+  margin: 0 0 40px 100px;
+  animation: slide-up .3s linear;
+}
