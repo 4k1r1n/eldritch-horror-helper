@@ -2,7 +2,7 @@ import './ancient-card.css';
 import BaseComponent from '../../utils/base-component';
 
 class AncientCard extends BaseComponent {
-  constructor(ancient, index) {
+  constructor(ancient, index, onAncientChange) {
     super({
       tagName: 'li',
       className: 'ancient-card',
@@ -19,6 +19,7 @@ class AncientCard extends BaseComponent {
     this.appendToDom(this.ancientImage.node);
 
     this.node.addEventListener('click', () => {
+      onAncientChange(ancient);
       this.addClass('active');
     });
   }

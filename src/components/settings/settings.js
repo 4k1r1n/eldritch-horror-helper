@@ -1,10 +1,11 @@
 import './settings.css';
 import BaseComponent from '../../utils/base-component';
 import AncientsList from '../ancients-list/ancients-list';
+import DifficultyLevels from '../difficulty-levels/difficulty-levels';
 import state from '../../state';
 
 class Settings extends BaseComponent {
-  constructor() {
+  constructor(onShuffleClick, onBackgroundChange) {
     super({
       className: 'settings',
     });
@@ -36,6 +37,7 @@ class Settings extends BaseComponent {
         this.renderDifficultiesSettings();
       }
     });
+    this.onShuffleClick = onShuffleClick;
     this.buttonSuffle.node.addEventListener('click', () => {
       const difficulty = this.state.currentDifficulty;
       if (difficulty) {
@@ -43,13 +45,21 @@ class Settings extends BaseComponent {
         this.onShuffleClick();
       }
     });
-    this.ancientsList = new AncientsList();
+    this.ancientsList = new AncientsList(onBackgroundChange);
+    this.difficultyLevels = new DifficultyLevels();
   }
 
   renderAncientsSettings() {
     this.title.setContent('Выберите Древнего');
     this.ancientsList.render();
     this.wrapper.appendToDom(this.title.node, this.ancientsList.node, this.buttonNext.node);
+    this.appendToDom(this.wrapper.node);
+  }
+
+  renderDifficultiesSettings() {
+    this.title.setContent('Выберите уровень сложности');
+    this.difficultyLevels.render();
+    this.wrapper.appendToDom(this.title.node, this.difficultyLevels.node, this.buttonSuffle.node);
     this.appendToDom(this.wrapper.node);
   }
 }

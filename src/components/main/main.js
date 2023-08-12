@@ -2,6 +2,7 @@ import './main.css';
 import state from '../../state';
 import BaseComponent from '../../utils/base-component';
 import Settings from '../settings/settings';
+import Tracker from '../tracker/tracker';
 import backgrounds from '../../constants/backgrounds';
 import homeBackground from '../../assets/images/backgrounds/Home.webp';
 
@@ -31,7 +32,21 @@ class Main extends BaseComponent {
   }
 
   render() {
-    const settings = new Settings();
+    const tracker = new Tracker();
+    const settings = new Settings(
+      () => {
+        const ancient = this.state.currentAncient;
+        const difficulty = this.state.currentDifficulty;
+        this.renderCurrentSettings(ancient, difficulty);
+        this.renderTracker(tracker);
+        this.renderDeck(ancient, difficulty, tracker);
+        this.buttonWrapper.appendToDom(this.buttonRetry.node);
+        this.game.appendToDom(this.buttonWrapper.node);
+      },
+      () => {
+        this.constructor.setBackground();
+      },
+    );
     this.appendToDom(this.wrapper.node);
     this.wrapper.appendToDom(settings.node);
     settings.renderAncientsSettings();

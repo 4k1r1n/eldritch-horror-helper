@@ -5,13 +5,14 @@ import AncientCard from '../ancient-card/ancient-card';
 import ancientsData from '../../data/ancients';
 
 class AncientsList extends BaseComponent {
-  constructor() {
+  constructor(onBackgroundChange) {
     super({
       tagName: 'ul',
       className: 'ancients-list',
     });
     this.state = state;
     this.activeCard = null;
+    this.onBackgroundChange = onBackgroundChange;
   }
 
   render() {
@@ -24,6 +25,9 @@ class AncientsList extends BaseComponent {
         this.activeCard = ancientCard.node;
       });
       this.appendToDom(ancientCard.node);
+      ancientCard.node.addEventListener('transitionend', () => {
+        this.onBackgroundChange();
+      });
     });
   }
 }
