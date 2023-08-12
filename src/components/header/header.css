@@ -1,0 +1,9 @@
+.header__wrapper {
+  margin-top: 25px;
+}
+
+.logo__image {
+  width: 100%;
+  height: auto;
+  max-width: 200px;
+}
