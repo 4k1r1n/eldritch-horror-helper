@@ -1,32 +1,10 @@
-import { ancientsAssets } from '../constants/constants';
+import ancientsCardsImages from '../constants/ancients-cards-images';
 
 const ancientsData = [
   {
-    id: 'azathoth',
-    name: 'azathoth',
-    cardFace: ancientsAssets.azathoth,
-    cardsCount: [
-      {
-        green: 1,
-        yellow: 2,
-        blue: 1,
-      },
-      {
-        green: 2,
-        yellow: 3,
-        blue: 1,
-      },
-      {
-        green: 2,
-        yellow: 4,
-        blue: 0,
-      },
-    ],
-  },
-  {
     id: 'cthulhu',
-    name: 'cthulhu',
-    cardFace: ancientsAssets.cthulhu,
+    name: 'Ктулху',
+    cardFace: ancientsCardsImages.cthulhu,
     cardsCount: [
       {
         green: 0,
@@ -46,9 +24,31 @@ const ancientsData = [
     ],
   },
   {
+    id: 'shubNiggurath',
+    name: 'Шуб-Ниггурат',
+    cardFace: ancientsCardsImages.shubNiggurath,
+    cardsCount: [
+      {
+        green: 1,
+        yellow: 2,
+        blue: 1,
+      },
+      {
+        green: 3,
+        yellow: 2,
+        blue: 1,
+      },
+      {
+        green: 2,
+        yellow: 4,
+        blue: 0,
+      },
+    ],
+  },
+  {
     id: 'iogSothoth',
-    name: 'iogSothoth',
-    cardFace: ancientsAssets.iogSothoth,
+    name: 'Йог-Сотот',
+    cardFace: ancientsCardsImages.iogSothoth,
     cardsCount: [
       {
         green: 0,
@@ -68,9 +68,9 @@ const ancientsData = [
     ],
   },
   {
-    id: 'shubNiggurath',
-    name: 'shubNiggurath',
-    cardFace: ancientsAssets.shubNiggurath,
+    id: 'azathoth',
+    name: 'Азатот',
+    cardFace: ancientsCardsImages.azathoth,
     cardsCount: [
       {
         green: 1,
@@ -78,8 +78,8 @@ const ancientsData = [
         blue: 1,
       },
       {
-        green: 3,
-        yellow: 2,
+        green: 2,
+        yellow: 3,
         blue: 1,
       },
       {
