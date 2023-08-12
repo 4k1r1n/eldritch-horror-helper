@@ -3,6 +3,7 @@ import state from '../../state';
 import BaseComponent from '../../utils/base-component';
 import Settings from '../settings/settings';
 import Tracker from '../tracker/tracker';
+import Deck from '../deck/deck';
 import backgrounds from '../../constants/backgrounds';
 import homeBackground from '../../assets/images/backgrounds/Home.webp';
 
@@ -51,6 +52,23 @@ class Main extends BaseComponent {
     this.wrapper.appendToDom(settings.node);
     settings.renderAncientsSettings();
     this.constructor.setBackground();
+  }
+
+  renderTracker(tracker) {
+    tracker.render();
+    this.game.appendToDom(tracker.node);
+    this.wrapper.appendToDom(this.game.node);
+  }
+
+  renderDeck(currentAncient, currentDifficulty, tracker) {
+    const deck = new Deck((card) => {
+      tracker.update(card);
+    });
+    const miniDecks = deck.constructDeck(currentAncient, currentDifficulty.id);
+    const flatMiniDecks = miniDecks.flat().reverse();
+    this.state.setDeck = flatMiniDecks;
+    deck.render();
+    this.game.appendToDom(deck.node);
   }
 
   renderCurrentSettings(ancient, difficulty) {
