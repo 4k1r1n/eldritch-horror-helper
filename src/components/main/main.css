@@ -8,6 +8,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-top: 15px;
 }
 
 .game {
@@ -28,4 +29,10 @@
 
 .game__button {
   margin-bottom: 30px;
+}
+
+@media (max-width: 1000px) {
+  .game {
+    gap: 20px;
+  }
 }

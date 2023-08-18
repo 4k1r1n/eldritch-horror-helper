@@ -19,6 +19,7 @@
   width: 100%;
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
   border: 10px solid var(--dark-translucent);
   padding: 25px 0 30px;
 }
@@ -68,4 +69,28 @@
   text-align: center;
   margin-bottom: 15px;
   color: var(--selected);
+}
+
+@media (max-width: 1000px) {
+  .settings__content {
+    width: 100%;
+  }
+
+  .ancients {
+    border: none;
+  }
+
+  .settings__content:first-child {
+    margin-top: 30px;
+    padding-right: 20px;
+  }
+
+  .settings__content:last-child {
+    margin-top: 30px;
+    padding-left: 20px;
+  }
+
+  .main__settings {
+    margin: 20px 0;
+  }
 }

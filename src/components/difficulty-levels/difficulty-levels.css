@@ -24,3 +24,9 @@
 .button_difficulty:hover {
   color: var(--selected);
 }
+
+@media (max-width: 1000px) {
+  .difficulties__levels {
+    padding: 5% 0;
+  }
+}

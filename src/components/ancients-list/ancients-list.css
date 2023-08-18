@@ -6,3 +6,10 @@
   min-height: 425px;
   justify-content: center;
 }
+
+@media (max-width: 1000px) {
+  .ancients__list {
+    gap: 15px;
+    min-height: auto;
+  }
+}
