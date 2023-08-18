@@ -5,7 +5,7 @@ import state from '../../state';
 
 class DifficultyLevels extends BaseComponent {
   constructor() {
-    super({ className: 'difficulties' });
+    super({ className: 'difficulties__levels' });
     this.activeDifficulty = null;
     this.state = state;
   }

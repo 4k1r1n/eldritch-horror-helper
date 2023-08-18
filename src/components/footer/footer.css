@@ -1,5 +1,6 @@
 .footer {
   flex-shrink: 0;
+  color: var(--primary);
 }
 
 .footer__wrapper {
@@ -16,7 +17,7 @@
 
 .footer-copyright__year {
   font-size: 2.0rem;
-  opacity: 0.3;
+  opacity: 0.8;
   cursor: default;
   font-weight: 700;
   font-family: 'Birmingham', sans-serif;

@@ -1,12 +1,14 @@
 import './tracker.css';
 import BaseComponent from '../../utils/base-component';
-import { stagesTitles } from '../../constants/constants';
-import state from '../../state';
+import { stagesNumbers } from '../../constants/constants';
 
 class Tracker extends BaseComponent {
-  constructor() {
+  constructor(state) {
     super({
-      className: 'tracker',
+      className: 'game__tracker tracker',
+    });
+    this.content = new BaseComponent({
+      className: 'tracker__content',
     });
     this.state = state;
     this.cardsColorsCounters = [];
@@ -14,35 +16,60 @@ class Tracker extends BaseComponent {
 
   render() {
     const ancient = this.state.currentAncient;
+    const difficulty = this.state.currentDifficulty;
     const title = new BaseComponent({
-      className: 'tracker__title',
+      tagName: 'h3',
+      className: 'title',
       content: 'Трекер',
     });
-    this.appendToDom(title.node);
+    const currentSettings = new BaseComponent({
+      className: 'tracker__current-settings current-settings',
+    });
+    const currentAncient = new BaseComponent({
+      tagName: 'span',
+      className: 'current-settings__ancient',
+      content: `${ancient.name}`,
+    });
+    const currentDifficulty = new BaseComponent({
+      tagName: 'span',
+      className: 'current-settings__difficulty',
+      content: `Уровень сложности: ${difficulty.name}`,
+    });
+    currentSettings.appendToDom(currentAncient.node, currentDifficulty.node);
+    this.content.appendToDom(title.node);
+    this.renderStages(ancient);
+    this.appendToDom(currentSettings.node, this.content.node);
+  }
+
+  renderStages(currentAncient) {
+    const stages = new BaseComponent({
+      className: 'tracker__stages',
+    });
     for (let i = 0; i < 3; i += 1) {
       const stageContainter = new BaseComponent({
-        className: 'tracker__stage stage',
+        className: 'stage',
       });
       const stageTitle = new BaseComponent({
+        tagName: 'span',
         className: 'stage__title',
-        content: `${stagesTitles[i]} этап`,
+        content: `Этап ${stagesNumbers[i]}`,
       });
       const cardsCounter = new BaseComponent({
         className: 'stage__counter counter',
       });
       const greenCardsCounter = new BaseComponent({
         className: 'counter__item counter__item_green',
-        content: `${ancient.cardsCount[i].green}`,
+        content: `${currentAncient.cardsCount[i].green}`,
       });
       const yellowCardsCounter = new BaseComponent({
         className: 'counter__item counter__item_yellow',
-        content: `${ancient.cardsCount[i].yellow}`,
+        content: `${currentAncient.cardsCount[i].yellow}`,
       });
       const blueCardsCounter = new BaseComponent({
         className: 'counter__item counter__item_blue',
-        content: `${ancient.cardsCount[i].blue}`,
+        content: `${currentAncient.cardsCount[i].blue}`,
       });
-      this.appendToDom(stageContainter.node);
+      stages.appendToDom(stageContainter.node);
       stageContainter.appendToDom(stageTitle.node, cardsCounter.node);
       cardsCounter.appendToDom(
         greenCardsCounter.node,
@@ -54,6 +81,7 @@ class Tracker extends BaseComponent {
         yellow: yellowCardsCounter.node,
         blue: blueCardsCounter.node,
       });
+      this.content.appendToDom(stages.node);
     }
   }
 

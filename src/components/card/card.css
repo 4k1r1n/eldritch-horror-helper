@@ -1,6 +1,6 @@
 .card {
-  width: 200px;
-  height: 290px;
+  width: 180px;
+  height: 270px;
   position: absolute;
   transition: transform 1s;
   transform-style: preserve-3d;
@@ -8,14 +8,14 @@
 }
 
 .card.is-flipped {
-  transform: translateX(800px) rotateY(180deg);
+  cursor: default;
 }
 
 .card__face {
   position: absolute;
   width: 100%;
   height: 100%;
-  border-radius: 15px;
+  border-radius: 10px;
   line-height: 200px;
   background-size: cover;
   backface-visibility: hidden;
@@ -23,4 +23,83 @@
 
 .card__face_back {
   transform: rotateY(180deg);
+}
+
+.card[data-id="0"].is-flipped {
+  transform: translateX(44vw) rotateY(180deg);
+  z-index: 16;
+}
+
+.card[data-id="1"].is-flipped {
+  transform: translateX(42vw) rotateY(180deg);
+  z-index: 15;
+}
+
+.card[data-id="2"].is-flipped {
+  transform: translateX(40vw) rotateY(180deg);
+  z-index: 14;
+}
+
+.card[data-id="3"].is-flipped {
+  transform: translateX(38vw) rotateY(180deg);
+  z-index: 13;
+}
+
+.card[data-id="4"].is-flipped {
+  transform: translateX(36vw) rotateY(180deg);
+  z-index: 12;
+}
+
+.card[data-id="5"].is-flipped {
+  transform: translateX(34vw) rotateY(180deg);
+  z-index: 11;
+}
+
+.card[data-id="6"].is-flipped {
+  transform: translateX(32vw) rotateY(180deg);
+  z-index: 10;
+}
+
+.card[data-id="7"].is-flipped {
+  transform: translateX(30vw) rotateY(180deg);
+  z-index: 9;
+}
+
+.card[data-id="8"].is-flipped {
+  transform: translateX(28vw) rotateY(180deg);
+  z-index: 8;
+}
+
+.card[data-id="9"].is-flipped {
+  transform: translateX(26vw) rotateY(180deg);
+  z-index: 7;
+}
+
+.card[data-id="10"].is-flipped {
+  transform: translateX(24vw) rotateY(180deg);
+  z-index: 6;
+}
+
+.card[data-id="11"].is-flipped {
+  transform: translateX(22vw) rotateY(180deg);
+  z-index: 5;
+}
+
+.card[data-id="12"].is-flipped {
+  transform: translateX(20vw) rotateY(180deg);
+  z-index: 4;
+}
+
+.card[data-id="13"].is-flipped {
+  transform: translateX(18vw) rotateY(180deg);
+  z-index: 3;
+}
+
+.card[data-id="14"].is-flipped {
+  transform: translateX(16vw) rotateY(180deg);
+  z-index: 2;
+}
+
+.card[data-id="15"].is-flipped {
+  transform: translateX(14vw) rotateY(180deg);
 }

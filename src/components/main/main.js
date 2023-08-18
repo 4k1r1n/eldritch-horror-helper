@@ -15,22 +15,21 @@ class Main extends BaseComponent {
       tagName: 'main',
       className: 'main',
     });
-    this.state = state;
     this.wrapper = new BaseComponent({
       className: 'wrapper main__wrapper',
     });
     this.game = new BaseComponent({
       className: 'game',
     });
-    this.buttonWrapper = new BaseComponent({
+    this.buttonContainer = new BaseComponent({
       className: 'game__button',
     });
-    this.buttonRetry = new BaseComponent({
+    this.button = new BaseComponent({
       tagName: 'button',
       className: 'button button_shadow',
-      content: 'Начать заново',
+      content: 'Новая игра',
     });
-    this.buttonRetry.node.addEventListener('click', () => {
+    this.button.node.addEventListener('click', () => {
       this.wrapper.destroyChildren();
       this.game.destroyChildren();
       this.state.setAncient = null;
@@ -39,27 +38,31 @@ class Main extends BaseComponent {
       this.state.setStage = 0;
       this.render();
     });
+    this.state = state;
   }
 
   render() {
-    const tracker = new Tracker();
+    const tracker = new Tracker(this.state);
     const settings = new Settings(
       () => {
         const ancient = this.state.currentAncient;
         const difficulty = this.state.currentDifficulty;
-        this.renderCurrentSettings(ancient, difficulty);
-        this.renderTracker(tracker);
-        this.renderDeck(ancient, difficulty, tracker);
-        this.buttonWrapper.appendToDom(this.buttonRetry.node);
-        this.game.appendToDom(this.buttonWrapper.node);
+        if (difficulty && ancient) {
+          this.wrapper.destroyChildren();
+          this.game.destroyChildren();
+          this.renderTracker(tracker);
+          this.renderDeck(ancient, difficulty, tracker);
+          this.buttonContainer.appendToDom(this.button.node);
+          this.game.appendToDom(this.buttonContainer.node);
+        }
       },
       () => {
         this.constructor.setBackground();
       },
     );
+    settings.render();
     this.appendToDom(this.wrapper.node);
     this.wrapper.appendToDom(settings.node);
-    settings.renderAncientsSettings();
     this.constructor.setBackground();
   }
 
@@ -78,24 +81,6 @@ class Main extends BaseComponent {
     this.state.setDeck = flatMiniDecks;
     deck.render();
     this.game.appendToDom(deck.node);
-  }
-
-  renderCurrentSettings(ancient, difficulty) {
-    const currentSettings = new BaseComponent({
-      className: 'current-settings',
-    });
-    const currentAncient = new BaseComponent({
-      tagName: 'span',
-      className: 'current-settings__ancient',
-      content: `${ancient.name}`,
-    });
-    const currentDifficulty = new BaseComponent({
-      tagName: 'span',
-      className: 'current-settings__difficulty',
-      content: `Уровень сложности: ${difficulty.name}`,
-    });
-    this.game.appendToDom(currentSettings.node);
-    currentSettings.appendToDom(currentAncient.node, currentDifficulty.node);
   }
 
   static setBackground() {

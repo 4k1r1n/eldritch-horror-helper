@@ -1,8 +1,7 @@
 .ancient-card {
   cursor: pointer;
-  height: 320px;
-  width: 250px;
-  transition: all .7s ease-in;
+  width: 150px;
+  height: 200px;
   padding: 0;
   margin: 0;
 }
@@ -10,12 +9,12 @@
 .ancient-card__image {
   width: 100%;
   height: auto;
-  border-radius: 15px;
+  border-radius: 10px;
+  transition: all .7s ease-in;
 }
 
-.ancient-card.active {
+.ancient-card.active .ancient-card__image {
   box-shadow: 0 0 15px 7px var(--ancient-card-shadow);
-  width: 320px;
-  height: 410px;
   border-radius: 15px;
+  width: 155px;
 }

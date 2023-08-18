@@ -8,7 +8,7 @@ import state from '../../state';
 class Deck extends BaseComponent {
   constructor(onCardClick) {
     super({
-      className: 'deck',
+      className: 'game__deck deck',
     });
     this.state = state;
     this.onCardClick = onCardClick;
@@ -18,9 +18,8 @@ class Deck extends BaseComponent {
     const deck = this.state.currentDeck;
     for (let i = 0; i < deck.length; i += 1) {
       const card = new Card(deck[i], this.onCardClick);
+      card.setAttribute('data-id', i);
       card.render();
-      card.node.style.right = `${i * 1}px`;
-      card.node.style.bottom = `${i * 1}px`;
       this.appendToDom(card.node);
     }
   }

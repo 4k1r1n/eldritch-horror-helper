@@ -1,25 +1,31 @@
-.current-settings {
+.main {
+  flex-grow: 1;
+}
+
+.main__wrapper {
+  height: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-  gap: 10px;
-  margin-bottom: 30px;
-}
-
-.current-settings__ancient {
-  font-size: 2.5rem;
-}
-
-.current-settings__difficulty {
-  font-size: 2rem;
-  font-family: 'Bookman Old Style Cyr', sans-serif;
 }
 
 .game {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
   animation: slide-up .3s linear;
 }
 
-.game__button {
+.game__wrapper {
+  width: 100%;
   display: flex;
-  justify-content: center;
+  margin-top: 20px;
+}
+
+.game__button {
+  margin-bottom: 30px;
 }

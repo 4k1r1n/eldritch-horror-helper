@@ -1,7 +1,71 @@
-.settings__wrapper {
+.main__settings {
+  width: 80%;
   display: flex;
-  height: 100%;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 15px;
+}
+
+.settings {
+  background-image: url('../../assets/images/backgrounds/old-paper-texture-background.avif');
+  background-size: cover;
+  animation: slide-up .3s linear;
+  border-radius: 10px;
+  border: 1px solid var(--dark-translucent);
+}
+
+.settings__wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  border: 10px solid var(--dark-translucent);
+  padding: 25px 0 30px;
+}
+
+.settings__content {
+  width: 50%;
+}
+
+.settings__content:first-child {
+  border-right: 1px solid var(--dark-translucent);
+  padding-left: 20px;
+}
+
+.settings__content:last-child {
+  padding-right: 20px;
+}
+
+.settings__button {
+  display: flex;
+  justify-content: center;
+}
+
+.title {
+  display: block;
+  padding-bottom: 10px;
+  font-size: 2rem;
+  letter-spacing: 2px;
+  font-weight: 400;
+  text-transform: uppercase;
+  text-align: center;
+  margin: 10px 0 0;
+  border-bottom: 1px solid var(--dark-translucent);
+  width: 100%;
+  margin: 0 auto 15px;
+}
+
+.ancients {
+  display: flex;
   flex-direction: column;
   align-items: center;
-  animation: slide-up .3s linear;
+}
+
+.ancients__text {
+  font-family: "Bookman Old Style Cyr", sans-serif;
+  font-size: 1.6rem;
+  font-style: italic;
+  text-align: center;
+  margin-bottom: 15px;
+  color: var(--selected);
 }

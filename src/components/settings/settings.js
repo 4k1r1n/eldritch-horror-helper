@@ -2,65 +2,78 @@ import './settings.css';
 import BaseComponent from '../../utils/base-component';
 import AncientsList from '../ancients-list/ancients-list';
 import DifficultyLevels from '../difficulty-levels/difficulty-levels';
-import state from '../../state';
 
 class Settings extends BaseComponent {
-  constructor(onShuffleClick, onBackgroundChange) {
+  constructor(onApplyClick, onBackgroundChange) {
     super({
-      className: 'settings',
+      className: 'main__settings settings',
     });
-    this.state = state;
     this.wrapper = new BaseComponent({
       className: 'settings__wrapper',
     });
-    this.title = new BaseComponent({
-      tagName: 'h2',
-      className: 'settings__title',
+    this.ancients = new BaseComponent({
+      className: 'settings__content ancients',
     });
-    this.buttons = new BaseComponent({
-      className: 'buttons',
+    this.difficulties = new BaseComponent({
+      className: 'settings__content difficulties',
     });
-    this.buttonNext = new BaseComponent({
-      tagName: 'button',
-      className: 'button button_shadow',
-      content: 'Далее',
+    this.buttonContainer = new BaseComponent({
+      className: 'settings__button',
     });
-    this.buttonSuffle = new BaseComponent({
+    this.button = new BaseComponent({
       tagName: 'button',
       className: 'button button_shadow',
       content: 'Замешать',
     });
-    this.buttonNext.node.addEventListener('click', () => {
-      const ancient = this.state.currentAncient;
-      if (ancient) {
-        this.wrapper.destroyChildren();
-        this.renderDifficultiesSettings();
-      }
+    this.selectedAncient = new BaseComponent({
+      tagName: 'span',
+      className: 'ancients__text',
+      content: 'Не выбран',
     });
-    this.onShuffleClick = onShuffleClick;
-    this.buttonSuffle.node.addEventListener('click', () => {
-      const difficulty = this.state.currentDifficulty;
-      if (difficulty) {
-        this.destroy();
-        this.onShuffleClick();
-      }
+    this.onApplyClick = onApplyClick;
+    this.button.node.addEventListener('click', () => {
+      this.onApplyClick();
     });
-    this.ancientsList = new AncientsList(onBackgroundChange);
+    this.ancientsList = new AncientsList(onBackgroundChange, this.setSelectedAncient.bind(this));
     this.difficultyLevels = new DifficultyLevels();
   }
 
+  render() {
+    this.renderAncientsSettings();
+    this.renderDifficultiesSettings();
+  }
+
   renderAncientsSettings() {
-    this.title.setContent('Выберите Древнего');
+    const title = new BaseComponent({
+      tagName: 'h3',
+      className: 'title',
+    });
+    title.setContent('Древний');
     this.ancientsList.render();
-    this.wrapper.appendToDom(this.title.node, this.ancientsList.node, this.buttonNext.node);
+    this.ancients.appendToDom(title.node, this.selectedAncient.node, this.ancientsList.node);
+    this.wrapper.appendToDom(this.ancients.node);
     this.appendToDom(this.wrapper.node);
   }
 
   renderDifficultiesSettings() {
-    this.title.setContent('Выберите уровень сложности');
+    const title = new BaseComponent({
+      tagName: 'h3',
+      className: 'title',
+    });
+    title.setContent('Уровень сложности');
     this.difficultyLevels.render();
-    this.wrapper.appendToDom(this.title.node, this.difficultyLevels.node, this.buttonSuffle.node);
+    this.buttonContainer.appendToDom(this.button.node);
+    this.difficulties.appendToDom(
+      title.node,
+      this.difficultyLevels.node,
+      this.buttonContainer.node,
+    );
+    this.wrapper.appendToDom(this.difficulties.node);
     this.appendToDom(this.wrapper.node);
+  }
+
+  setSelectedAncient(selectedAncient) {
+    this.selectedAncient.setContent(selectedAncient.name);
   }
 }
 
