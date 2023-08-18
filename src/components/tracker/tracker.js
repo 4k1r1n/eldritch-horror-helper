@@ -28,7 +28,7 @@ class Tracker extends BaseComponent {
     const currentAncient = new BaseComponent({
       tagName: 'span',
       className: 'current-settings__ancient',
-      content: `${ancient.name}`,
+      content: `Древний: ${ancient.name}`,
     });
     const currentDifficulty = new BaseComponent({
       tagName: 'span',
