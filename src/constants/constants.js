@@ -1,3 +1,3 @@
-const stagesTitles = ['Первый', 'Второй', 'Третий'];
+const stagesNumbers = ['I', 'II', 'III'];
 
-export { stagesTitles };
+export { stagesNumbers };
