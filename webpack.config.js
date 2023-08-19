@@ -21,7 +21,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'Eldritch Horror Helper',
       template: './index.html',
-      favicon: './assets/favicon.ico',
+      favicon: './assets/icons/favicon.png',
     }),
     new MiniCssExtractPlugin({
       filename: '[name].[contenthash].css',
