@@ -10,6 +10,9 @@
   --yellow-cards: #AA8000;
   --blue-cards: #4D59A3;
   --green-cards: #3A611F;
-  --dark: #000;
-  --dark-translucent: rgba(0, 0, 0, 0.9);
+  --title: #493712;
+  --border: #c9c3b9;
+  --text: #3a3a3a;
+  --block-border: #7b7267;
+  --block-border-shadow: #c1ad93ed;
 }

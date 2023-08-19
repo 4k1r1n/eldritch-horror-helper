@@ -9,7 +9,6 @@
 }
 
 .button_difficulty {
-  color: var(--dark-translucent);
   background-color: inherit;
   position: relative;
   font-size: 1.8rem;

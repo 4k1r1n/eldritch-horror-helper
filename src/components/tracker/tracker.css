@@ -10,14 +10,13 @@
   font-size: 2rem;
   background-image: url('../../assets/images/backgrounds/old-paper-texture-background.avif');
   background-size: cover;
-  border-radius: 10px;
-  border: 1px solid var(--dark-translucent);
   margin: 0;
 }
 
 .tracker__content {
-  border: 10px solid var(--dark-translucent);
+  border: 5px double var(--block-border);
   padding: 20px;
+  box-shadow: inset 0 0 15px 2px var(--block-border-shadow);
 }
 
 .tracker__stages {

@@ -11,8 +11,6 @@
   background-image: url('../../assets/images/backgrounds/old-paper-texture-background.avif');
   background-size: cover;
   animation: slide-up .3s linear;
-  border-radius: 10px;
-  border: 1px solid var(--dark-translucent);
 }
 
 .settings__wrapper {
@@ -20,8 +18,9 @@
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  border: 10px solid var(--dark-translucent);
-  padding: 25px 0 30px;
+  border: 5px double var(--block-border);
+  padding: 20px;
+  box-shadow: inset 0 0 15px 2px var(--block-border-shadow);
 }
 
 .settings__content {
@@ -29,7 +28,7 @@
 }
 
 .settings__content:first-child {
-  border-right: 1px solid var(--dark-translucent);
+  border-right: 1px solid var(--border);
   padding-left: 20px;
 }
 
@@ -40,20 +39,6 @@
 .settings__button {
   display: flex;
   justify-content: center;
-}
-
-.title {
-  display: block;
-  padding-bottom: 10px;
-  font-size: 2rem;
-  letter-spacing: 2px;
-  font-weight: 400;
-  text-transform: uppercase;
-  text-align: center;
-  margin: 10px 0 0;
-  border-bottom: 1px solid var(--dark-translucent);
-  width: 100%;
-  margin: 0 auto 15px;
 }
 
 .ancients {
