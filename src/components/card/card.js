@@ -23,6 +23,7 @@ class Card extends BaseComponent {
     this.cardFaceBack.node.src = cardInfo.cardFace;
     this.isAnimating = false;
     this.addListener();
+    Card.prevCard = null;
   }
 
   render() {
