@@ -12,7 +12,7 @@
   --green-cards: #3A611F;
   --title: #493712;
   --border: #c9c3b9;
-  --text: #3a3a3a;
+  --text: rgb(35, 34, 34);
   --block-border: #7b7267;
   --block-border-shadow: #c1ad93ed;
 }
