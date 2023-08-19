@@ -22,7 +22,10 @@ class Main extends BaseComponent {
       className: 'game',
     });
     this.buttonContainer = new BaseComponent({
-      className: 'game__button',
+      className: 'current-settings__button',
+    });
+    this.gameContainer = new BaseComponent({
+      className: 'game__container',
     });
     this.button = new BaseComponent({
       tagName: 'button',
@@ -50,10 +53,10 @@ class Main extends BaseComponent {
         if (difficulty && ancient) {
           this.wrapper.destroyChildren();
           this.game.destroyChildren();
+          this.gameContainer.destroyChildren();
           this.renderTracker(tracker);
+          this.renderCurrentSettings();
           this.renderDeck(ancient, difficulty, tracker);
-          this.buttonContainer.appendToDom(this.button.node);
-          this.game.appendToDom(this.buttonContainer.node);
         }
       },
       () => {
@@ -68,7 +71,8 @@ class Main extends BaseComponent {
 
   renderTracker(tracker) {
     tracker.render();
-    this.game.appendToDom(tracker.node);
+    this.gameContainer.appendToDom(tracker.node);
+    this.game.appendToDom(this.gameContainer.node);
     this.wrapper.appendToDom(this.game.node);
   }
 
@@ -81,6 +85,33 @@ class Main extends BaseComponent {
     this.state.setDeck = flatMiniDecks;
     deck.render();
     this.game.appendToDom(deck.node);
+  }
+
+  renderCurrentSettings() {
+    const currentSettings = new BaseComponent({
+      className: 'game__current-settings current-settings',
+    });
+    const currentSettingsWrapper = new BaseComponent({
+      className: 'current-settings__wrapper',
+    });
+    const currentAncient = new BaseComponent({
+      tagName: 'span',
+      className: 'current-settings__ancient',
+      content: `Древний: ${this.state.currentAncient.name}`,
+    });
+    const currentDifficulty = new BaseComponent({
+      tagName: 'span',
+      className: 'current-settings__difficulty',
+      content: `Уровень сложности: ${this.state.currentDifficulty.name}`,
+    });
+    const currentSettingsContent = new BaseComponent({
+      className: 'current-settings__content',
+    });
+    this.buttonContainer.appendToDom(this.button.node);
+    currentSettingsContent.appendToDom(currentAncient.node, currentDifficulty.node);
+    currentSettingsWrapper.appendToDom(currentSettingsContent.node, this.buttonContainer.node);
+    currentSettings.appendToDom(currentSettingsWrapper.node);
+    this.gameContainer.appendToDom(currentSettings.node);
   }
 
   static setBackground() {

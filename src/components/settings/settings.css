@@ -68,6 +68,7 @@
   .settings__content:first-child {
     margin-top: 30px;
     padding-right: 20px;
+    border-right: initial;
   }
 
   .settings__content:last-child {

@@ -1,4 +1,5 @@
 .main {
+  display: flex;
   flex-grow: 1;
 }
 
@@ -11,27 +12,71 @@
 }
 
 .game {
-  width: 100%;
-  height: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
-  animation: slide-up .3s linear;
+  gap: 60px;
+  animation: slide-up 0.3s linear;
 }
 
-.game__wrapper {
-  width: 100%;
+.game__container {
   display: flex;
-  margin-top: 20px;
+  gap: 40px;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .game__button {
   margin-bottom: 30px;
 }
 
+.game__current-settings {
+  background-image: url('../../assets/images/backgrounds/old-paper-texture-background.avif');
+  background-size: cover;
+  padding: 15px;
+}
+
+.current-settings__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  font-style: italic;
+  font-family: 'Bookman Old Style Cyr', sans-serif;
+  font-size: 1.6rem;
+}
+
+.current-settings__wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  border: 5px double var(--block-border);
+  padding: 20px;
+  gap: 30px;
+  box-shadow: inset 0 0 15px 2px var(--block-border-shadow);
+}
+
+.title {
+  display: block;
+  padding-bottom: 10px;
+  font-size: 2rem;
+  letter-spacing: 2px;
+  font-weight: 400;
+  text-align: center;
+  margin: 10px 0 0;
+  border-bottom: 1px solid var(--border);
+  width: 100%;
+  margin: 0 auto 15px;
+  color: var(--title)
+}
+
 @media (max-width: 1000px) {
   .game {
     gap: 20px;
+  }
+
+  .main__wrapper {
+    padding: 15px;
   }
 }

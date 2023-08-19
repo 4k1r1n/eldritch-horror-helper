@@ -16,29 +16,14 @@ class Tracker extends BaseComponent {
 
   render() {
     const ancient = this.state.currentAncient;
-    const difficulty = this.state.currentDifficulty;
     const title = new BaseComponent({
       tagName: 'h3',
       className: 'title',
       content: 'Трекер',
     });
-    const currentSettings = new BaseComponent({
-      className: 'tracker__current-settings current-settings',
-    });
-    const currentAncient = new BaseComponent({
-      tagName: 'span',
-      className: 'current-settings__ancient',
-      content: `Древний: ${ancient.name}`,
-    });
-    const currentDifficulty = new BaseComponent({
-      tagName: 'span',
-      className: 'current-settings__difficulty',
-      content: `Уровень сложности: ${difficulty.name}`,
-    });
-    currentSettings.appendToDom(currentAncient.node, currentDifficulty.node);
     this.content.appendToDom(title.node);
     this.renderStages(ancient);
-    this.appendToDom(currentSettings.node, this.content.node);
+    this.appendToDom(this.content.node);
   }
 
   renderStages(currentAncient) {

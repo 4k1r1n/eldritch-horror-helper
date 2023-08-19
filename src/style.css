@@ -14,7 +14,6 @@ html {
 }
 
 body {
-  height: 100vh;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -61,20 +60,6 @@ body:before {
 .button_shadow:hover {
   background-color: var(--button-hover);
   box-shadow: 0 0 14px 2px var(--button-hover-shadow);
-}
-
-.title {
-  display: block;
-  padding-bottom: 10px;
-  font-size: 2rem;
-  letter-spacing: 2px;
-  font-weight: 400;
-  text-align: center;
-  margin: 10px 0 0;
-  border-bottom: 1px solid var(--border);
-  width: 100%;
-  margin: 0 auto 15px;
-  color: var(--title)
 }
 
 @keyframes append-animate {

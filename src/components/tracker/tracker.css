@@ -3,7 +3,6 @@
 }
 
 .tracker {
-  opacity: 0.9;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -67,17 +66,4 @@
 
 .counter__item_blue {
   background-color: var(--blue-cards);
-}
-
-.tracker__current-settings {
-  margin-bottom: 10px;
-}
-
-.current-settings {
-  display: flex;
-  flex-direction: column;
-  font-style: italic;
-  font-family: 'Bookman Old Style Cyr', sans-serif;
-  font-size: 1.4rem;
-  align-self: flex-start;
 }
