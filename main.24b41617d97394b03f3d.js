@@ -1323,7 +1323,7 @@ class Footer extends base_component {
       className: 'wrapper footer__wrapper'
     });
     this.copyright = new base_component({
-      className: 'footer-copyright'
+      className: 'footer__copyright copyright'
     });
     this.linkGithub = new base_component({
       tagName: 'a',
@@ -1335,7 +1335,7 @@ class Footer extends base_component {
     });
     this.year = new base_component({
       tagName: 'span',
-      className: 'footer-copyright__year',
+      className: 'copyright__year',
       content: '2022'
     });
     this.linkRs = new base_component({
