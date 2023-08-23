@@ -11,7 +11,7 @@ class Footer extends BaseComponent {
       className: 'wrapper footer__wrapper',
     });
     this.copyright = new BaseComponent({
-      className: 'footer-copyright',
+      className: 'footer__copyright copyright',
     });
     this.linkGithub = new BaseComponent({
       tagName: 'a',
@@ -20,7 +20,7 @@ class Footer extends BaseComponent {
     });
     this.year = new BaseComponent({
       tagName: 'span',
-      className: 'footer-copyright__year',
+      className: 'copyright__year',
       content: '2022',
     });
     this.linkRs = new BaseComponent({

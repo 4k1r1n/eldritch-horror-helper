@@ -9,13 +9,13 @@
   margin-bottom: 20px;
 }
 
-.footer-copyright {
+.footer__copyright {
   display: flex;
   align-items: center;
   gap: 20px;
 }
 
-.footer-copyright__year {
+.copyright__year {
   font-size: 2.0rem;
   opacity: 0.8;
   cursor: default;
