@@ -14,8 +14,14 @@ class Settings extends BaseComponent {
     this.ancients = new BaseComponent({
       className: 'settings__content ancients',
     });
+    this.ancientsContent = new BaseComponent({
+      className: 'ancients__content',
+    });
     this.difficulties = new BaseComponent({
       className: 'settings__content difficulties',
+    });
+    this.difficultiesContent = new BaseComponent({
+      className: 'difficulties__content',
     });
     this.buttonContainer = new BaseComponent({
       className: 'settings__button',
@@ -50,7 +56,8 @@ class Settings extends BaseComponent {
     });
     title.setContent('Древний');
     this.ancientsList.render();
-    this.ancients.appendToDom(title.node, this.selectedAncient.node, this.ancientsList.node);
+    this.ancientsContent.appendToDom(this.selectedAncient.node, this.ancientsList.node);
+    this.ancients.appendToDom(title.node, this.ancientsContent.node);
     this.wrapper.appendToDom(this.ancients.node);
     this.appendToDom(this.wrapper.node);
   }
@@ -63,11 +70,8 @@ class Settings extends BaseComponent {
     title.setContent('Уровень сложности');
     this.difficultyLevels.render();
     this.buttonContainer.appendToDom(this.button.node);
-    this.difficulties.appendToDom(
-      title.node,
-      this.difficultyLevels.node,
-      this.buttonContainer.node,
-    );
+    this.difficultiesContent.appendToDom(this.difficultyLevels.node, this.buttonContainer.node);
+    this.difficulties.appendToDom(title.node, this.difficultiesContent.node);
     this.wrapper.appendToDom(this.difficulties.node);
     this.appendToDom(this.wrapper.node);
   }
