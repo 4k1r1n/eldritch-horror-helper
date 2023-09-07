@@ -5,7 +5,7 @@ A small helper app for building the mythos deck in the board game Eldritch Horro
 [View Demo](https://4k1r1n.github.io/eldritch-horror-helper/)
 
 <p align="center">
-  <img src="https://github.com/4k1r1n/eldritch-horror-helper/assets/91277105/d13f8b77-db55-4174-bfc3-e276bf29effe" alt="Settings" width="700">
+  <img src="https://github.com/4k1r1n/eldritch-horror-helper/assets/91277105/49173ff2-9f51-465a-8f9c-bf266ae49a47" alt="Settings" width="700">
   <img src="https://github.com/4k1r1n/eldritch-horror-helper/assets/91277105/1ec27157-7f35-4cf2-a95c-1a292a4b20df" alt="Game" width="700">
 </p>
 
