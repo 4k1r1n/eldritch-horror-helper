@@ -34,5 +34,19 @@ Next, the difficulty of the game will need to be determined:
   <img src="https://github.com/4k1r1n/eldritch-horror-helper/assets/91277105/2f186a63-c0fe-45b8-a724-6e3c6fb8aae8" alt="Buildind the mythos deck" width="500">
 </p>
 
+## Getting Started
+1. Clone the repo
+   ```sh
+   git clone https://github.com/4k1r1n/eldritch-horror-helper
+   ```
+2. Install dependencies
+   ```sh
+   npm install
+   ```
+3. Run the application
+   ```sh
+   npm run start
+   ```
+
 ## Acknowledgements
 Eldritch Horror Helper was made for [RS school](https://rs.school/).
